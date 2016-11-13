@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3F1BB61DD8E4F1003B108D /* MapKeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3F1BB51DD8E4F1003B108D /* MapKeyCell.swift */; };
 		1F6ED5D41DCEDBCB0051DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6ED5D31DCEDBCB0051DBB9 /* AppDelegate.swift */; };
 		1F6ED5D61DCEDBCB0051DBB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6ED5D51DCEDBCB0051DBB9 /* ViewController.swift */; };
 		1F6ED5D91DCEDBCB0051DBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6ED5D71DCEDBCB0051DBB9 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F3F1BB51DD8E4F1003B108D /* MapKeyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapKeyCell.swift; path = ../MapKeyCell.swift; sourceTree = "<group>"; };
 		1F6ED5D01DCEDBCB0051DBB9 /* Slug_Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slug_Route.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6ED5D31DCEDBCB0051DBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F6ED5D51DCEDBCB0051DBB9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		1F6ED5D21DCEDBCB0051DBB9 /* Slug_Route */ = {
 			isa = PBXGroup;
 			children = (
+				1F3F1BB51DD8E4F1003B108D /* MapKeyCell.swift */,
 				1F6ED5D31DCEDBCB0051DBB9 /* AppDelegate.swift */,
 				1F6ED5D51DCEDBCB0051DBB9 /* ViewController.swift */,
 				1F6ED5D71DCEDBCB0051DBB9 /* Main.storyboard */,
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3F1BB61DD8E4F1003B108D /* MapKeyCell.swift in Sources */,
 				1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */,
 				1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */,
 				1FFFC4581DD17E5400318621 /* Bus.swift in Sources */,
@@ -299,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -342,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -357,6 +361,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LE6WUG6275;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jeff.G2017.Slug-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,6 +376,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LE6WUG6275;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jeff.G2017.Slug-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";

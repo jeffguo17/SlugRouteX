@@ -29,6 +29,11 @@ class BusStop: LocationObject {
     
 }
 
+enum BusStopType: String {
+    case outerStop = "Outer Stop"
+    case innerStop = "Inner Stop"
+}
+
 extension UIImage {
     enum BusStopImage: String {
         case blue_stop, orange_stop
