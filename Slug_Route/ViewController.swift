@@ -240,31 +240,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         //Remove off-line bus markers
-        var indexToRemove = [Int]()
         
-        for m in 0..<busMarkerList.count {
-            
-            var removeCurrentMarker: Bool = true
+        for (i, m) in busMarkerList.enumerated().reversed() {
+            var removeCurrentMarker = true
             
             for b in busList {
-                if ( b.id == busMarkerList[m].id ) {
+                if ( b.id == m.id ) {
                     removeCurrentMarker = false
                     break
                 }
             }
             
-            if removeCurrentMarker == true {
-                busMarkerList[m].marker.map = nil
-                indexToRemove.append(m)
+            if removeCurrentMarker {
+                m.marker.map = nil
+                busMarkerList.remove(at: i)
             }
-            
         }
-        
-        for i in indexToRemove {
-            busMarkerList.remove(at: i)
-        }
-        
-        indexToRemove.removeAll()
         
         //numBus Label Setup
         let numBusString = NSMutableAttributedString(string: "\(busList.count)", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])

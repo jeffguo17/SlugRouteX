@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Slug_Route/ViewController.swift"
-            timestampString = "501037620.241905"
+            timestampString = "501051307.66408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "InsetLabel"
             landmarkType = "3">
          </BreakpointContent>
