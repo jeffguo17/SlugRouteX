@@ -192,7 +192,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             busMarkerList.removeAll()
             
-            return
         }
         
         for b in busList {
