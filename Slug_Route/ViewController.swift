@@ -65,7 +65,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationItem.titleView = titleLabel
         
         //Map Key Button
-        let infoButton = UIButton(frame: CGRect(x: self.view.frame.size.width-50, y: 125, width: 35, height: 35))
+        let infoButton = UIButton(frame: CGRect(x: self.view.frame.size.width-65, y: 90, width: 40, height: 40))
         
         infoButton.layer.cornerRadius = 0.5 * infoButton.bounds.size.width
         
