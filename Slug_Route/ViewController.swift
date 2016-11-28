@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var visualEffectView: UIView!
     var numBusLabel: UILabel!
     var timeLabel: UILabel!
+    var resultString = ""
     
     // Map Key Names
     let mapName = [BusType.loop.rawValue,BusType.upperCampus.rawValue,BusType.outOfService.rawValue, BusType.nightOwl.rawValue, BusType.special.rawValue, BusStopType.innerStop.rawValue,BusStopType.outerStop.rawValue]
@@ -175,6 +176,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func setBusList(resultArray: [[String: AnyObject]]) {
+        var didBusChange = false
+        var findBusId = false
+        
+        for jsonObject in resultArray {
+            findBusId = false
+            for mBus in busList {
+                if Int(jsonObject["id"] as! String)! == mBus.id {
+                    findBusId = true
+                    if jsonObject["lat"] as! Double != mBus.location.coordinate.latitude ||
+                    jsonObject["lon"] as! Double != mBus.location.coordinate.longitude ||
+                    jsonObject["type"] as! String != mBus.type {
+                        didBusChange = true
+                        break
+                    }
+                }
+            }
+            if didBusChange || findBusId == false {
+                break
+            }
+        }
+        
+        if findBusId && didBusChange == false {
+            return
+        }
+        
         busList.removeAll()
         for jsonObject in resultArray {
             busList.append(Bus(id: Int(jsonObject["id"] as! String)!, lat: jsonObject["lat"] as! Double, lon: jsonObject["lon"] as! Double, type: jsonObject["type"] as! String))
