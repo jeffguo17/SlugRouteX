@@ -30,8 +30,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var visualEffectView: UIView!
     var numBusLabel: UILabel!
     var timeLabel: UILabel!
-    var resultString = ""
     var waitForTwoSecond = false
+    var networkDisconnect = false
     
     // Map Key Names
     let mapName = [BusType.loop.rawValue,BusType.upperCampus.rawValue,BusType.outOfService.rawValue, BusType.nightOwl.rawValue, BusType.special.rawValue, BusStopType.innerStop.rawValue,BusStopType.outerStop.rawValue]
@@ -121,13 +121,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             (data, response, error) in
 
             if error != nil {
-                let offlineString = NSMutableAttributedString(string: "No Internet Connection", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
+                if self.networkDisconnect == false {
+                    let offlineString = NSMutableAttributedString(string: "No Internet Connection", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
                 
-                offlineString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0), range: .init(location: 0, length: offlineString.length))
+                    offlineString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0), range: .init(location: 0, length: offlineString.length))
                 
-                DispatchQueue.main.async {
-                    self.numBusLabel.attributedText = offlineString
-                    self.timeLabel.textColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0)
+                    DispatchQueue.main.async {
+                        self.numBusLabel.attributedText = offlineString
+                        self.timeLabel.textColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0)
+                    }
+                
+                    self.networkDisconnect = true
+                    self.busList.removeAll()
                 }
                 
                 return
@@ -145,6 +150,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                 
                 self.showCurrentTime()
+                
+                if self.networkDisconnect {
+                    self.networkDisconnect = false
+                }
             } catch let jsonError {
                 print("jsonError")
                 print(jsonError)
