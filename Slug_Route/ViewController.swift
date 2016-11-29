@@ -31,6 +31,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var numBusLabel: UILabel!
     var timeLabel: UILabel!
     var resultString = ""
+    var waitForTwoSecond = false
     
     // Map Key Names
     let mapName = [BusType.loop.rawValue,BusType.upperCampus.rawValue,BusType.outOfService.rawValue, BusType.nightOwl.rawValue, BusType.special.rawValue, BusStopType.innerStop.rawValue,BusStopType.outerStop.rawValue]
@@ -107,15 +108,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Auto fetch data from http server
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fetchBusHttp), userInfo: nil, repeats: true)
         
-        DispatchQueue.main.async {
-            self.drawBusStops()
-        }
+        self.drawBusStops()
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc private func fetchBusHttp() {
@@ -140,11 +134,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             do {
-                let jsonArray = try JSONSerialization.jsonObject(with: data!, options:
+                if self.waitForTwoSecond == false {
+                    let jsonArray = try JSONSerialization.jsonObject(with: data!, options:
                     JSONSerialization.ReadingOptions.mutableContainers) as! [[String: AnyObject]]
+                    
+                    self.waitForTwoSecond = true
+                    self.setBusList(resultArray: jsonArray)
+                } else {
+                    self.waitForTwoSecond = false
+                }
                 
-                self.setBusList(resultArray: jsonArray)
-                
+                self.showCurrentTime()
             } catch let jsonError {
                 print("jsonError")
                 print(jsonError)
@@ -176,39 +176,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func setBusList(resultArray: [[String: AnyObject]]) {
-        var didBusChange = false
-        var findBusId = false
-        
-        for jsonObject in resultArray {
-            findBusId = false
-            for mBus in busList {
-                if Int(jsonObject["id"] as! String)! == mBus.id {
-                    findBusId = true
-                    if jsonObject["lat"] as! Double != mBus.location.coordinate.latitude ||
-                    jsonObject["lon"] as! Double != mBus.location.coordinate.longitude ||
-                    jsonObject["type"] as! String != mBus.type {
-                        didBusChange = true
-                        break
-                    }
-                }
-            }
-            if didBusChange || findBusId == false {
-                break
-            }
+        if busList.count != resultArray.count {
+            self.showNumBus(numBus: resultArray.count)
         }
-        
-        if findBusId && didBusChange == false {
-            return
-        }
-        
+    
         busList.removeAll()
+        
         for jsonObject in resultArray {
             busList.append(Bus(id: Int(jsonObject["id"] as! String)!, lat: jsonObject["lat"] as! Double, lon: jsonObject["lon"] as! Double, type: jsonObject["type"] as! String))
         }
         
-        DispatchQueue.main.async {
-            self.updateBusMarkers()
-        }
+        self.updateBusMarkers()
     }
     
     private func updateBusMarkers() {
@@ -282,21 +260,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
         
-        //numBus Label Setup
-        let numBusString = NSMutableAttributedString(string: "\(busList.count)", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
+    }
+    
+    private func showNumBus(numBus: Int) {
+        let numBusString = NSMutableAttributedString(string: "\(numBus)", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
         
         var stringShuttle = "Shuttles"
         
-        if busList.count <= 1 {
+        if numBus <= 1 {
             stringShuttle = "Shuttle"
         }
         
         numBusString.append(NSMutableAttributedString(string: " \(stringShuttle) in Service", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 12.0)!]))
-
+        
         numBusString.addAttributes([NSForegroundColorAttributeName: UIColor.green], range: .init(location: 0, length: 2))
         
-        numBusLabel.attributedText = numBusString
-        
+        DispatchQueue.main.async {
+            self.numBusLabel.attributedText = numBusString
+        }
+    }
+    
+    private func showCurrentTime() {
         //Current Time Label Setup
         let dateFormatter = DateFormatter()
         
@@ -311,8 +295,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         currentTimeString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1.0), range: .init(location: 0, length: currentTimeString.length))
         
-        timeLabel.attributedText = currentTimeString
-        
+        DispatchQueue.main.async {
+            self.timeLabel.attributedText = currentTimeString
+        }
     }
     
     func infoButtonAction() {
