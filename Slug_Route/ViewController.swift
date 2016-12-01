@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Google Map Setup 
+        //Google Map Setup
         GMSServices.provideAPIKey("AIzaSyAtebqP7WjxCl7H7TpYwnBhMyIL8mqnK7o")
         
         let mapSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-45)
@@ -51,11 +51,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         mapView = GMSMapView.map(withFrame: mapSize, camera: camera)
         
+        mapView?.isMyLocationEnabled = true
+        mapView?.settings.myLocationButton = true
+        
         self.view.addSubview(mapView!)
         
         //Navigation Bar Title
         let titleString = NSMutableAttributedString(string: "Slug Route", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
-
+        
         titleString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 1.00, green: 0.63, blue: 0.00, alpha: 1.0), range: .init(location: 0, length: 4))
         
         titleString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.08, green: 0.4, blue: 0.75, alpha: 1.0), range: .init(location: 5, length: 5))
@@ -67,14 +70,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.navigationItem.titleView = titleLabel
         
         //Map Key Button
-        let infoButton = UIButton(frame: CGRect(x: self.view.frame.size.width-65, y: 90, width: 40, height: 40))
+        let infoButton = UIButton(frame: CGRect(x: self.view.frame.size.width-60, y: 80, width: 50, height: 50))
         
         infoButton.layer.cornerRadius = 0.5 * infoButton.bounds.size.width
         
         infoButton.backgroundColor = UIColor.white
         infoButton.setTitle("i", for: .normal)
         infoButton.setTitleColor(self.view.tintColor, for: .normal)
-
+        
         infoButton.addTarget(self, action: #selector(infoButtonAction), for: UIControlEvents.touchUpInside)
         
         mapView?.addSubview(infoButton)
@@ -113,55 +116,57 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @objc private func fetchBusHttp() {
-        let URL = NSURL(string: "http://bts.ucsc.edu:8081/location/get")
-        
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: URL! as URL) {
-            (data, response, error) in
-
-            if error != nil {
-                if self.networkDisconnect == false {
-                    let offlineString = NSMutableAttributedString(string: "No Internet Connection", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
+        if waitForTwoSecond == false {
+            let URL = NSURL(string: "http://bts.ucsc.edu:8081/location/get")
+            
+            let session = URLSession.shared
+            
+            let task = session.dataTask(with: URL! as URL) {
+                (data, response, error) in
                 
-                    offlineString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0), range: .init(location: 0, length: offlineString.length))
-                
-                    DispatchQueue.main.async {
-                        self.numBusLabel.attributedText = offlineString
-                        self.timeLabel.textColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0)
+                if error != nil {
+                    if self.networkDisconnect == false {
+                        let offlineString = NSMutableAttributedString(string: "No Internet Connection", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
+                        
+                        offlineString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0), range: .init(location: 0, length: offlineString.length))
+                        
+                        DispatchQueue.main.async {
+                            self.numBusLabel.attributedText = offlineString
+                            self.timeLabel.textColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0)
+                        }
+                        
+                        self.networkDisconnect = true
+                        self.busList.removeAll()
                     }
-                
-                    self.networkDisconnect = true
-                    self.busList.removeAll()
+                    
+                    return
                 }
                 
-                return
-            }
-            
-            do {
-                if self.waitForTwoSecond == false {
+                do {
                     let jsonArray = try JSONSerialization.jsonObject(with: data!, options:
-                    JSONSerialization.ReadingOptions.mutableContainers) as! [[String: AnyObject]]
+                        JSONSerialization.ReadingOptions.mutableContainers) as! [[String: AnyObject]]
                     
                     self.waitForTwoSecond = true
                     self.setBusList(resultArray: jsonArray)
-                } else {
-                    self.waitForTwoSecond = false
+                    
+                    if self.networkDisconnect {
+                        self.networkDisconnect = false
+                    }
+                    
+                    self.showCurrentTime()
+                } catch let jsonError {
+                    print("jsonError")
+                    print(jsonError)
                 }
                 
-                self.showCurrentTime()
-                
-                if self.networkDisconnect {
-                    self.networkDisconnect = false
-                }
-            } catch let jsonError {
-                print("jsonError")
-                print(jsonError)
             }
             
+            task.resume()
+        } else {
+            waitForTwoSecond = false
+            showCurrentTime()
         }
         
-        task.resume()
     }
     
     private func drawBusStops() {
@@ -185,10 +190,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     private func setBusList(resultArray: [[String: AnyObject]]) {
-        if busList.count != resultArray.count {
+        if busList.count != resultArray.count || resultArray.count == 0 {
             self.showNumBus(numBus: resultArray.count)
         }
-    
+        
         busList.removeAll()
         
         for jsonObject in resultArray {
@@ -330,7 +335,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         let cell = self.popUpTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MapKeyCell
         
         cell.mapImage.image = mapImage[indexPath.row]
