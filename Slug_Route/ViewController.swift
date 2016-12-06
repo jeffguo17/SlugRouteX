@@ -206,7 +206,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func updateBusMarkers() {
         if busList.count == 0 {
             for m in busMarkerList {
-                m.marker.map = nil
+                DispatchQueue.main.async {
+                    m.marker.map = nil
+                }
             }
             busMarkerList.removeAll()
             
@@ -223,7 +225,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     if m.type != b.type {
                         let mIndex = busMarkerList.index(where: { $0 === m })
                         busMarkerList.remove(at: mIndex!)
-                        m.marker.map = nil
+                        DispatchQueue.main.async {
+                            m.marker.map = nil
+                        }
                         mBusMarker = nil
                     }
                     
@@ -243,15 +247,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 case "LOOP OUT OF SERVICE AT BARN THEATER", "OUT OF SERVICE/SORRY": busImage = UIImage(busImage: .outofservice)
                 default: busImage = UIImage(busImage: .special)
                 }
+                 
+                DispatchQueue.main.async {
+                    let newMarker = GMSMarker(position: b.location.coordinate)
+                    newMarker.title = b.type
+                    newMarker.icon = busImage
+                    newMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
+                    newMarker.zIndex = 1
+                    newMarker.map = self.mapView
+                    
+                    
+                    self.busMarkerList.append(BusMarker(id: b.id, marker: newMarker, location: b.location, type: b.type))
+                }
                 
-                let newMarker = GMSMarker(position: b.location.coordinate)
-                newMarker.title = b.type
-                newMarker.icon = busImage
-                newMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
-                newMarker.zIndex = 1
-                newMarker.map = mapView
-                
-                busMarkerList.append(BusMarker(id: b.id, marker: newMarker, location: b.location, type: b.type))
             }
             
         }
@@ -269,7 +277,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             if removeCurrentMarker {
-                m.marker.map = nil
+                DispatchQueue.main.async {
+                    m.marker.map = nil
+                }
                 busMarkerList.remove(at: i)
             }
         }
