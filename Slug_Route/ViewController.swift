@@ -9,10 +9,11 @@
 import UIKit
 import GoogleMaps
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate {
     
     @IBOutlet weak var popUpTableView: UITableView!
     @IBOutlet var popUpView: UIView!
+    @IBOutlet weak var SlideOutMenu: UIBarButtonItem!
     
     @IBAction func popUpViewButton(_ sender: UIButton) {
         UIView.animate(withDuration: 0.25, animations: {
@@ -107,6 +108,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         visualEffectView = UIView()
         visualEffectView.frame = self.view.bounds
         visualEffectView.backgroundColor = UIColor.gray.withAlphaComponent(0.6)
+        
+        //Slide Out/ Hamburger menu Setup
+        SlideOutMenu.target = self.revealViewController()
+        SlideOutMenu.action = #selector(SWRevealViewController.revealToggle(_:))
+        
+        self.revealViewController().delegate = self
+        self.revealViewController().tapGestureRecognizer()
+        self.revealViewController().panGestureRecognizer()
         
         //Auto fetch data from http server
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fetchBusHttp), userInfo: nil, repeats: true)
@@ -385,6 +394,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             intrinsicSuperViewContentSize.width += leftInset + rightInset
             
             return intrinsicSuperViewContentSize
+        }
+    }
+    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        if(position == FrontViewPosition.left) {
+            self.mapView?.settings.setAllGesturesEnabled(true)
+        } else {
+            self.mapView?.settings.setAllGesturesEnabled(false)
         }
     }
     

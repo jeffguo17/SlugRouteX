@@ -13,6 +13,8 @@
 		1F6ED5D91DCEDBCB0051DBB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6ED5D71DCEDBCB0051DBB9 /* Main.storyboard */; };
 		1F6ED5DB1DCEDBCB0051DBB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F6ED5DA1DCEDBCB0051DBB9 /* Assets.xcassets */; };
 		1F6ED5DE1DCEDBCB0051DBB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6ED5DC1DCEDBCB0051DBB9 /* LaunchScreen.storyboard */; };
+		1F747C231DF63E6A0090176F /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F747C221DF63E6A0090176F /* SWRevealViewController.m */; };
+		1F747C251DF646AE0090176F /* SlideOutTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F747C241DF646AE0090176F /* SlideOutTableVC.swift */; };
 		1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA66D11DD2EC4100938940 /* BusStop.swift */; };
 		1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA66D31DD2ECF100938940 /* LocationObject.swift */; };
 		1FF8C06D1DD22FA4007105ED /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1FF8C06C1DD22FA4007105ED /* Podfile */; };
@@ -30,6 +32,10 @@
 		1F6ED5DA1DCEDBCB0051DBB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F6ED5DD1DCEDBCB0051DBB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F6ED5DF1DCEDBCB0051DBB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F747C201DF63E690090176F /* Slug_Route-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Slug_Route-Bridging-Header.h"; sourceTree = "<group>"; };
+		1F747C211DF63E6A0090176F /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		1F747C221DF63E6A0090176F /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		1F747C241DF646AE0090176F /* SlideOutTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutTableVC.swift; sourceTree = "<group>"; };
 		1FCA66D11DD2EC4100938940 /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		1FCA66D31DD2ECF100938940 /* LocationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationObject.swift; sourceTree = "<group>"; };
 		1FF8C06C1DD22FA4007105ED /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -85,8 +91,20 @@
 				1FFFC4591DD1858500318621 /* BusMarker.swift */,
 				1FCA66D11DD2EC4100938940 /* BusStop.swift */,
 				1FCA66D31DD2ECF100938940 /* LocationObject.swift */,
+				1F747C241DF646AE0090176F /* SlideOutTableVC.swift */,
+				1F747C1F1DF63E220090176F /* Supporting Files */,
 			);
 			path = Slug_Route;
+			sourceTree = "<group>";
+		};
+		1F747C1F1DF63E220090176F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1F747C211DF63E6A0090176F /* SWRevealViewController.h */,
+				1F747C221DF63E6A0090176F /* SWRevealViewController.m */,
+				1F747C201DF63E690090176F /* Slug_Route-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B7160D24DCEDFB2BE9DAE695 /* Pods */ = {
@@ -142,6 +160,7 @@
 					1F6ED5CF1DCEDBCB0051DBB9 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = LE6WUG6275;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -234,6 +253,8 @@
 				1F3F1BB61DD8E4F1003B108D /* MapKeyCell.swift in Sources */,
 				1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */,
 				1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */,
+				1F747C251DF646AE0090176F /* SlideOutTableVC.swift in Sources */,
+				1F747C231DF63E6A0090176F /* SWRevealViewController.m in Sources */,
 				1FFFC4581DD17E5400318621 /* Bus.swift in Sources */,
 				1F6ED5D61DCEDBCB0051DBB9 /* ViewController.swift in Sources */,
 				1FFFC45A1DD1858500318621 /* BusMarker.swift in Sources */,
@@ -361,12 +382,15 @@
 			baseConfigurationReference = 33B098F09E011496544E81A7 /* Pods-Slug_Route.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LE6WUG6275;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jeff.G2017.Slug-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Slug_Route/Slug_Route-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -376,12 +400,14 @@
 			baseConfigurationReference = 5082B27A8C378A267B6684BE /* Pods-Slug_Route.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LE6WUG6275;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jeff.G2017.Slug-Route";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Slug_Route/Slug_Route-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
