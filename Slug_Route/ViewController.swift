@@ -13,7 +13,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var popUpTableView: UITableView!
     @IBOutlet var popUpView: UIView!
-    @IBOutlet weak var SlideOutMenu: UIBarButtonItem!
     
     @IBAction func popUpViewButton(_ sender: UIButton) {
         UIView.animate(withDuration: 0.25, animations: {
@@ -44,7 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         
         //Google Map Setup
-        GMSServices.provideAPIKey("AIzaSyAtebqP7WjxCl7H7TpYwnBhMyIL8mqnK7o")
+        GMSServices.provideAPIKey("AIzaSyDkE71XvOEUCMdIjRDU8FxWj4q7BYeU-ZE")
         
         let mapSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-45)
         
@@ -74,6 +73,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let infoButton = UIButton(frame: CGRect(x: self.view.frame.size.width-60, y: 80, width: 50, height: 50))
         
         infoButton.layer.cornerRadius = 0.5 * infoButton.bounds.size.width
+        infoButton.layer.shadowColor = UIColor.lightGray.cgColor
+        infoButton.layer.shadowOffset = CGSize(width: 0.5,height: 1.5)
+        infoButton.layer.shadowOpacity = 1.0;
+        infoButton.layer.shadowRadius = 0.0;
+        
         
         infoButton.backgroundColor = UIColor.white
         infoButton.setTitle("i", for: .normal)
@@ -110,8 +114,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         visualEffectView.backgroundColor = UIColor.gray.withAlphaComponent(0.6)
         
         //Slide Out/ Hamburger menu Setup
-        SlideOutMenu.target = self.revealViewController()
-        SlideOutMenu.action = #selector(SWRevealViewController.revealToggle(_:))
+        addSlideMenuButton()
         
         self.revealViewController().delegate = self
         self.revealViewController().tapGestureRecognizer()
@@ -361,6 +364,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.mapName.text = mapName[indexPath.row]
         
         return cell
+    }
+    
+    //add menu icon to navigation bar
+    func addSlideMenuButton(){
+        let btnShowMenu = UIButton(type: UIButtonType.system)
+        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState())
+        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        btnShowMenu.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: UIControlEvents.touchUpInside)
+        let customBarItem = UIBarButtonItem(customView: btnShowMenu)
+        self.navigationItem.leftBarButtonItem = customBarItem;
+    }
+    
+    // triple line menu icon
+    func defaultMenuImage() -> UIImage {
+        var defaultMenuImage = UIImage()
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
+        
+        UIColor.black.setFill()
+        UIBezierPath(rect: CGRect(x: 0, y: 3, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 10, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 17, width: 30, height: 1)).fill()
+        
+        UIColor.white.setFill()
+        UIBezierPath(rect: CGRect(x: 0, y: 4, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 11,  width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 18, width: 30, height: 1)).fill()
+        
+        defaultMenuImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        return defaultMenuImage;
     }
     
     class InsetLabel: UILabel {
