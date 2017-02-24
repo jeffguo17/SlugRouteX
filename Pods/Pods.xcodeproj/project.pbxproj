@@ -7,103 +7,173 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		411972DCD797A6B4E17E44EEBB73CC08 /* Pods-Slug_Route-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F719EAE7105483E3AAEEAD520CDAC95E /* Pods-Slug_Route-dummy.m */; };
-		9BA9B3A68613F74F0ECBD648B47EDECC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		011C727CCD4B95415352015B16F1A51A /* SVWebViewControllerActivity.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D869369EFA2E0E43954287FCD247389 /* SVWebViewControllerActivity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06B3FEEA0617197A84026E06D0BBE4CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		0B0C6EB3782C4948A931107605130BD1 /* SVWebViewControllerActivityChrome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D53A08EAEFDCF34BCE970DB59F2E3C70 /* SVWebViewControllerActivityChrome@2x.png */; };
+		22B6160E06BA521583B2753F1495D404 /* SVModalWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D1E47084C31AECF49BEBCF3A71D08A1 /* SVModalWebViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		23B6D8DA0E63F500A4DDF43D41308586 /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3839D78D76D772E5F9678F822734F6A3 /* zh-Hans.lproj */; };
+		255FB067D1E176FB3F081ADD940EDFDF /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C4517A68EA2EE797B7E287D7DB909482 /* de.lproj */; };
+		2F7197E434478A8F1455F820354A55A5 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6C7BC0619516FC3F67ACFAA5EEF944BB /* es.lproj */; };
+		33CC2C70F4AB727257E1C7B19AF542C3 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B1390D594A50DAF0EFCD93E77A5E6A /* SVWebViewControllerActivitySafari-iPad@2x.png */; };
+		34388A4A4C7B1C716E7209E0AC420B12 /* SVWebViewControllerActivityChrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CB7D036C729304756E0C96D7E9DC91 /* SVWebViewControllerActivityChrome.m */; };
+		35F50D68412FA153120C33A9872282AA /* Pods-Slug_Route-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 49D1E64E1B76DEE5B80A49E6D3B711E7 /* Pods-Slug_Route-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A2F6743F797B5561FDE9DF4540F9A9B /* SVWebViewControllerActivitySafari-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = C690BB07EF6610B353AAC26AE064CF38 /* SVWebViewControllerActivitySafari-iPad.png */; };
+		4C702C0A6CF67B602BA689DF1FA66CD4 /* SVWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 795B81180D6D64A63CD00E0B0EAD36F0 /* SVWebViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E4D6B87E0D38B215F85D659B8762509 /* es-ES.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 645423C9754CD7FDA890853B5FB6790B /* es-ES.lproj */; };
+		69B2CA59862FF7795A2E3662BFDDABAC /* SVWebViewControllerActivitySafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 891884AD096B307229D6EE508E350C89 /* SVWebViewControllerActivitySafari@2x.png */; };
+		6A64C77E6894532F5B13C5EC92B1B581 /* SVWebViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D8A0B16D43D6AB8DC854C574D0F067 /* SVWebViewController-dummy.m */; };
+		705E7C066957D8F79ED4190224D1E084 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 765F3BA02997DC4E8440D0B0741EC2C3 /* da.lproj */; };
+		7A4FD6530DDF9A1510F79255511F3823 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B9A1DC19FD03CBB351874575F4E9 /* fr.lproj */; };
+		7B3E5DDF0D3E2BA4D34AD5DBEBDCEA97 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A696CA2B714CC2B90E58EDF8DC9AEB /* SVModalWebViewController.m */; };
+		92B823C3CC8DAE557455A0E7649D2F8C /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4584FAC4BC29FE53BE0917B054E9410B /* SVWebViewController.m */; };
+		968B14CF6B88DA5B0B16E8F639E033F2 /* SVWebViewControllerActivityChrome.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B8CFE184B31D811BE315815BB8084B8 /* SVWebViewControllerActivityChrome.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		969EA356C3CC166D572259B1D56B27BA /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6DFA9FC55CE0645C9EA4F5A36CBC536C /* en.lproj */; };
+		9E2CC5880193C39B7E7B23E53C4A94E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		A1592AA7072380A61F09212C43CE4D4C /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCB4D16628820AD6FD18DFC126F7819 /* SVWebViewControllerActivity.m */; };
+		A233E00CED8D65E3DFC1DDE36B452BA4 /* SVWebViewControllerActivitySafari.h in Headers */ = {isa = PBXBuildFile; fileRef = 068F68ABBFCA1FEAE8CC4180A7709473 /* SVWebViewControllerActivitySafari.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A2EF089880EE1693FFF8BEA6E731ED16 /* SVWebViewControllerActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B247739879596BDA1E771A5495745B /* SVWebViewControllerActivitySafari.m */; };
+		A43882AC160AD8A5E86B888F046F665F /* SVWebViewControllerBack.png in Resources */ = {isa = PBXBuildFile; fileRef = D85DB061E19B816CE0EE6D05CE1A28E4 /* SVWebViewControllerBack.png */; };
+		AC13C82DC66F8D2FEF161BA09ABC4AD7 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E4C4558CA1EDD90213A387553559A292 /* ja.lproj */; };
+		C30AFCA57839A4A35B7AE17B675E07F1 /* SVWebViewControllerNext.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A954460AEAED23A4FD14E01A087ECC5 /* SVWebViewControllerNext.png */; };
+		C36D24480EFCBD3DD8C62FBFCAFE92A1 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F97F72C02B845708850D7A4C47603CB9 /* SVWebViewController.bundle */; };
+		CB57F478E8D8551EFB9828E3012B604A /* SVWebViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DEE2DD66ABCD55F6CC18F349655C2DE /* SVWebViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D142410B2E15268C0CE45652E020EA9A /* Pods-Slug_Route-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BA2B051A918AAAEAE8C9B0CBED17DA /* Pods-Slug_Route-dummy.m */; };
+		D696972B4D5A29101BA2EFF54D76C835 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 80DF52CC47C76C217CE69D6081965812 /* pt.lproj */; };
+		D9371BCB277E1A5BBE97C87C7B5B4516 /* SVWebViewControllerActivityChrome-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = BA389F4562471C42AE7734264EB38DE3 /* SVWebViewControllerActivityChrome-iPad.png */; };
+		D9FE3E0F2844FC8526ADA94F6EF87DD6 /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E9857D471D8520703558049DE7F81ADC /* zh-Hant.lproj */; };
+		EBE0445A0B3DE83814D0EA2494AC138D /* SVWebViewControllerBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1175C52B22BAACB150B627533BC204BD /* SVWebViewControllerBack@2x.png */; };
+		F0F55D1B885B605EAB405BFD6C65314B /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F2BD9D331B82B48C05C2AC3833E14DF /* SVWebViewControllerActivityChrome-iPad@2x.png */; };
+		FD955346E8F8C8E4DF7AA2FAA4EF9214 /* SVWebViewControllerNext@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8E7A45AC1138837D1D1D2BBD4A061DA /* SVWebViewControllerNext@2x.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		902EAB7FF43D0FA80D209CA97FE59E28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0A274F9550A4599260A8DA7133CDAF2;
+			remoteInfo = SVWebViewController;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		36DB83CB4279B90D59054691B89501D1 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
-		4A3CECE9D5FB7955B3CDC0D466370500 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		538420A98E73D9FEEB1749377D3FDCA0 /* Pods-Slug_Route-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Slug_Route-acknowledgements.plist"; sourceTree = "<group>"; };
-		8175BFD41CD61098C8C49ACC9323D8BF /* Pods-Slug_Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Slug_Route.debug.xcconfig"; sourceTree = "<group>"; };
+		057388E476784E97038CEE718914FFB4 /* Pods-Slug_Route-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Slug_Route-resources.sh"; sourceTree = "<group>"; };
+		068F68ABBFCA1FEAE8CC4180A7709473 /* SVWebViewControllerActivitySafari.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVWebViewControllerActivitySafari.h; path = SVWebViewController/UIActivities/Safari/SVWebViewControllerActivitySafari.h; sourceTree = "<group>"; };
+		07CD7953BDE669EFB1A47AC9BE9D12D4 /* Pods-Slug_Route-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Slug_Route-frameworks.sh"; sourceTree = "<group>"; };
+		1175C52B22BAACB150B627533BC204BD /* SVWebViewControllerBack@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerBack@2x.png"; path = "SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack@2x.png"; sourceTree = "<group>"; };
+		18F72E5DB92463FBC5887FDC14537EB5 /* Pods-Slug_Route-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Slug_Route-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1C1B13F95657531113A68900C4AE55E8 /* Pods-Slug_Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Slug_Route.debug.xcconfig"; sourceTree = "<group>"; };
+		1ECD1097C0056269144E3E70221F060C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D869369EFA2E0E43954287FCD247389 /* SVWebViewControllerActivity.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVWebViewControllerActivity.h; path = SVWebViewController/UIActivities/SVWebViewControllerActivity.h; sourceTree = "<group>"; };
+		33CB7D036C729304756E0C96D7E9DC91 /* SVWebViewControllerActivityChrome.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVWebViewControllerActivityChrome.m; path = SVWebViewController/UIActivities/Chrome/SVWebViewControllerActivityChrome.m; sourceTree = "<group>"; };
+		3839D78D76D772E5F9678F822734F6A3 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "SVWebViewController/zh-Hans.lproj"; sourceTree = "<group>"; };
+		384FCC85D2971F9DE7FD7D3892A1A8A2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39BA2B051A918AAAEAE8C9B0CBED17DA /* Pods-Slug_Route-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Slug_Route-dummy.m"; sourceTree = "<group>"; };
+		4584FAC4BC29FE53BE0917B054E9410B /* SVWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVWebViewController.m; path = SVWebViewController/SVWebViewController.m; sourceTree = "<group>"; };
+		4738AC0D78CF0E762CE333A459C5899E /* SVWebViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVWebViewController.framework; path = SVWebViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		474568E921B63353FBED045381CABB20 /* Pods-Slug_Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Slug_Route.release.xcconfig"; sourceTree = "<group>"; };
+		49D1E64E1B76DEE5B80A49E6D3B711E7 /* Pods-Slug_Route-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Slug_Route-umbrella.h"; sourceTree = "<group>"; };
+		4BAB236FF9A98DB606C0D1DECF6832F4 /* Pods_Slug_Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Slug_Route.framework; path = "Pods-Slug_Route.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DEE2DD66ABCD55F6CC18F349655C2DE /* SVWebViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVWebViewController-umbrella.h"; sourceTree = "<group>"; };
+		5A954460AEAED23A4FD14E01A087ECC5 /* SVWebViewControllerNext.png */ = {isa = PBXFileReference; includeInIndex = 1; name = SVWebViewControllerNext.png; path = SVWebViewController/SVWebViewController.bundle/SVWebViewControllerNext.png; sourceTree = "<group>"; };
+		645423C9754CD7FDA890853B5FB6790B /* es-ES.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "es-ES.lproj"; path = "SVWebViewController/es-ES.lproj"; sourceTree = "<group>"; };
+		67B247739879596BDA1E771A5495745B /* SVWebViewControllerActivitySafari.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVWebViewControllerActivitySafari.m; path = SVWebViewController/UIActivities/Safari/SVWebViewControllerActivitySafari.m; sourceTree = "<group>"; };
+		6B8CFE184B31D811BE315815BB8084B8 /* SVWebViewControllerActivityChrome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVWebViewControllerActivityChrome.h; path = SVWebViewController/UIActivities/Chrome/SVWebViewControllerActivityChrome.h; sourceTree = "<group>"; };
+		6C7BC0619516FC3F67ACFAA5EEF944BB /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = SVWebViewController/es.lproj; sourceTree = "<group>"; };
+		6D1E47084C31AECF49BEBCF3A71D08A1 /* SVModalWebViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVModalWebViewController.h; path = SVWebViewController/SVModalWebViewController.h; sourceTree = "<group>"; };
+		6DFA9FC55CE0645C9EA4F5A36CBC536C /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = SVWebViewController/en.lproj; sourceTree = "<group>"; };
+		765F3BA02997DC4E8440D0B0741EC2C3 /* da.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = da.lproj; path = SVWebViewController/da.lproj; sourceTree = "<group>"; };
+		780B2F9DDA3450E912A15D4F426CDE6C /* SVWebViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVWebViewController.xcconfig; sourceTree = "<group>"; };
+		795B81180D6D64A63CD00E0B0EAD36F0 /* SVWebViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVWebViewController.h; path = SVWebViewController/SVWebViewController.h; sourceTree = "<group>"; };
+		80DF52CC47C76C217CE69D6081965812 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = SVWebViewController/pt.lproj; sourceTree = "<group>"; };
+		891884AD096B307229D6EE508E350C89 /* SVWebViewControllerActivitySafari@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerActivitySafari@2x.png"; path = "SVWebViewController/UIActivities/Safari/SVWebViewControllerActivitySafari@2x.png"; sourceTree = "<group>"; };
+		8F2BD9D331B82B48C05C2AC3833E14DF /* SVWebViewControllerActivityChrome-iPad@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerActivityChrome-iPad@2x.png"; path = "SVWebViewController/UIActivities/Chrome/SVWebViewControllerActivityChrome-iPad@2x.png"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AB3FD2B67EA5645AEA836D262039B80B /* Pods-Slug_Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Slug_Route.release.xcconfig"; sourceTree = "<group>"; };
+		A6C5B9A1DC19FD03CBB351874575F4E9 /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = SVWebViewController/fr.lproj; sourceTree = "<group>"; };
+		ABCB4D16628820AD6FD18DFC126F7819 /* SVWebViewControllerActivity.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVWebViewControllerActivity.m; path = SVWebViewController/UIActivities/SVWebViewControllerActivity.m; sourceTree = "<group>"; };
+		AD6379D410127CE6F4CD4EF159D6E6C1 /* SVWebViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVWebViewController-prefix.pch"; sourceTree = "<group>"; };
+		B4A696CA2B714CC2B90E58EDF8DC9AEB /* SVModalWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVModalWebViewController.m; path = SVWebViewController/SVModalWebViewController.m; sourceTree = "<group>"; };
+		B9D8A0B16D43D6AB8DC854C574D0F067 /* SVWebViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVWebViewController-dummy.m"; sourceTree = "<group>"; };
+		BA389F4562471C42AE7734264EB38DE3 /* SVWebViewControllerActivityChrome-iPad.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerActivityChrome-iPad.png"; path = "SVWebViewController/UIActivities/Chrome/SVWebViewControllerActivityChrome-iPad.png"; sourceTree = "<group>"; };
+		C4517A68EA2EE797B7E287D7DB909482 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = SVWebViewController/de.lproj; sourceTree = "<group>"; };
+		C690BB07EF6610B353AAC26AE064CF38 /* SVWebViewControllerActivitySafari-iPad.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerActivitySafari-iPad.png"; path = "SVWebViewController/UIActivities/Safari/SVWebViewControllerActivitySafari-iPad.png"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CD98377797B9DE7A0DE941C250FAB41B /* Pods-Slug_Route-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Slug_Route-frameworks.sh"; sourceTree = "<group>"; };
-		CDA3FD20BDDB07AAEECE1531214C8DDE /* Pods-Slug_Route-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Slug_Route-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E004374149D836C1256FFFCB38FECB72 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
-		E10117B4523F410BA0FE5F1F729C16A4 /* Pods-Slug_Route-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Slug_Route-resources.sh"; sourceTree = "<group>"; };
-		EB4FC998C727CBA8DEA6D7163F224E9F /* libPods-Slug_Route.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Slug_Route.a"; path = "libPods-Slug_Route.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F719EAE7105483E3AAEEAD520CDAC95E /* Pods-Slug_Route-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Slug_Route-dummy.m"; sourceTree = "<group>"; };
-		F95DB7ACF73CF03040C57A3D42223A51 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		D53A08EAEFDCF34BCE970DB59F2E3C70 /* SVWebViewControllerActivityChrome@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerActivityChrome@2x.png"; path = "SVWebViewController/UIActivities/Chrome/SVWebViewControllerActivityChrome@2x.png"; sourceTree = "<group>"; };
+		D85DB061E19B816CE0EE6D05CE1A28E4 /* SVWebViewControllerBack.png */ = {isa = PBXFileReference; includeInIndex = 1; name = SVWebViewControllerBack.png; path = SVWebViewController/SVWebViewController.bundle/SVWebViewControllerBack.png; sourceTree = "<group>"; };
+		E4C4558CA1EDD90213A387553559A292 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = SVWebViewController/ja.lproj; sourceTree = "<group>"; };
+		E8E7A45AC1138837D1D1D2BBD4A061DA /* SVWebViewControllerNext@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerNext@2x.png"; path = "SVWebViewController/SVWebViewController.bundle/SVWebViewControllerNext@2x.png"; sourceTree = "<group>"; };
+		E9857D471D8520703558049DE7F81ADC /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hant.lproj"; path = "SVWebViewController/zh-Hant.lproj"; sourceTree = "<group>"; };
+		EAD79DC39D4B90D60CC846725093DC41 /* SVWebViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVWebViewController.modulemap; sourceTree = "<group>"; };
+		EE9A70809ECC2600DD6441D361210017 /* Pods-Slug_Route-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Slug_Route-acknowledgements.plist"; sourceTree = "<group>"; };
+		F97F72C02B845708850D7A4C47603CB9 /* SVWebViewController.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVWebViewController.bundle; path = SVWebViewController/SVWebViewController.bundle; sourceTree = "<group>"; };
+		F9B1390D594A50DAF0EFCD93E77A5E6A /* SVWebViewControllerActivitySafari-iPad@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "SVWebViewControllerActivitySafari-iPad@2x.png"; path = "SVWebViewController/UIActivities/Safari/SVWebViewControllerActivitySafari-iPad@2x.png"; sourceTree = "<group>"; };
+		FC5DA98B66AC9F8AADD8393D9A4A6859 /* Pods-Slug_Route.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Slug_Route.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		74DD19586C524305062EDBFCF4604D09 /* Frameworks */ = {
+		4B8EA3EA600AE2FFBE75A9611B70AF93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BA9B3A68613F74F0ECBD648B47EDECC /* Foundation.framework in Frameworks */,
+				06B3FEEA0617197A84026E06D0BBE4CA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5E6A460AE19538E275E5C265B2B6F62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E2CC5880193C39B7E7B23E53C4A94E2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1418B056D31B27EE2CEBA552B5ADFE56 /* Base */ = {
+		0E4BE0BF1B41FE7BE1C2024CF55E593D /* Pods-Slug_Route */ = {
 			isa = PBXGroup;
 			children = (
-				501562BF592517FC6A65661FF1B35C78 /* Frameworks */,
-			);
-			name = Base;
-			sourceTree = "<group>";
-		};
-		23356F14A94043DAF57D9BE4DF1CB490 /* Pods-Slug_Route */ = {
-			isa = PBXGroup;
-			children = (
-				CDA3FD20BDDB07AAEECE1531214C8DDE /* Pods-Slug_Route-acknowledgements.markdown */,
-				538420A98E73D9FEEB1749377D3FDCA0 /* Pods-Slug_Route-acknowledgements.plist */,
-				F719EAE7105483E3AAEEAD520CDAC95E /* Pods-Slug_Route-dummy.m */,
-				CD98377797B9DE7A0DE941C250FAB41B /* Pods-Slug_Route-frameworks.sh */,
-				E10117B4523F410BA0FE5F1F729C16A4 /* Pods-Slug_Route-resources.sh */,
-				8175BFD41CD61098C8C49ACC9323D8BF /* Pods-Slug_Route.debug.xcconfig */,
-				AB3FD2B67EA5645AEA836D262039B80B /* Pods-Slug_Route.release.xcconfig */,
+				384FCC85D2971F9DE7FD7D3892A1A8A2 /* Info.plist */,
+				FC5DA98B66AC9F8AADD8393D9A4A6859 /* Pods-Slug_Route.modulemap */,
+				18F72E5DB92463FBC5887FDC14537EB5 /* Pods-Slug_Route-acknowledgements.markdown */,
+				EE9A70809ECC2600DD6441D361210017 /* Pods-Slug_Route-acknowledgements.plist */,
+				39BA2B051A918AAAEAE8C9B0CBED17DA /* Pods-Slug_Route-dummy.m */,
+				07CD7953BDE669EFB1A47AC9BE9D12D4 /* Pods-Slug_Route-frameworks.sh */,
+				057388E476784E97038CEE718914FFB4 /* Pods-Slug_Route-resources.sh */,
+				49D1E64E1B76DEE5B80A49E6D3B711E7 /* Pods-Slug_Route-umbrella.h */,
+				1C1B13F95657531113A68900C4AE55E8 /* Pods-Slug_Route.debug.xcconfig */,
+				474568E921B63353FBED045381CABB20 /* Pods-Slug_Route.release.xcconfig */,
 			);
 			name = "Pods-Slug_Route";
 			path = "Target Support Files/Pods-Slug_Route";
 			sourceTree = "<group>";
 		};
-		243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */ = {
+		1B11506A29078B8A1B23327856C889F5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1418B056D31B27EE2CEBA552B5ADFE56 /* Base */,
-				6BC99F081C91F80679CFA5DDC6213D57 /* Maps */,
-			);
-			name = GoogleMaps;
-			path = GoogleMaps;
-			sourceTree = "<group>";
-		};
-		501562BF592517FC6A65661FF1B35C78 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E004374149D836C1256FFFCB38FECB72 /* GoogleMapsBase.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		66DFD1692DFCEE9E6D5F3D6A3B917068 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EB4FC998C727CBA8DEA6D7163F224E9F /* libPods-Slug_Route.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */,
+				37E0E7761875193D2D8B99AC44E80E0F /* SVWebViewController */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		6BC99F081C91F80679CFA5DDC6213D57 /* Maps */ = {
+		37E0E7761875193D2D8B99AC44E80E0F /* SVWebViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E10253D9A6AF596CDA1C3BBE1F2FBFD6 /* Frameworks */,
-				7679C02ACA204A8841D527A6548CA23E /* Resources */,
+				6D1E47084C31AECF49BEBCF3A71D08A1 /* SVModalWebViewController.h */,
+				B4A696CA2B714CC2B90E58EDF8DC9AEB /* SVModalWebViewController.m */,
+				795B81180D6D64A63CD00E0B0EAD36F0 /* SVWebViewController.h */,
+				4584FAC4BC29FE53BE0917B054E9410B /* SVWebViewController.m */,
+				2D869369EFA2E0E43954287FCD247389 /* SVWebViewControllerActivity.h */,
+				ABCB4D16628820AD6FD18DFC126F7819 /* SVWebViewControllerActivity.m */,
+				6B8CFE184B31D811BE315815BB8084B8 /* SVWebViewControllerActivityChrome.h */,
+				33CB7D036C729304756E0C96D7E9DC91 /* SVWebViewControllerActivityChrome.m */,
+				068F68ABBFCA1FEAE8CC4180A7709473 /* SVWebViewControllerActivitySafari.h */,
+				67B247739879596BDA1E771A5495745B /* SVWebViewControllerActivitySafari.m */,
+				AE1A6E58E4D9BC209F3900524E7641DE /* Resources */,
+				86BDAFBE1CDAB32DD6F78B05AFA8BAAF /* Support Files */,
 			);
-			name = Maps;
+			name = SVWebViewController;
+			path = SVWebViewController;
 			sourceTree = "<group>";
 		};
 		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
@@ -114,12 +184,13 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		7679C02ACA204A8841D527A6548CA23E /* Resources */ = {
+		7AD50CFB157C7A7809F5F87168E8C1AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4A3CECE9D5FB7955B3CDC0D466370500 /* GoogleMaps.bundle */,
+				4BAB236FF9A98DB606C0D1DECF6832F4 /* Pods_Slug_Route.framework */,
+				4738AC0D78CF0E762CE333A459C5899E /* SVWebViewController.framework */,
 			);
-			name = Resources;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -127,18 +198,60 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */,
-				66DFD1692DFCEE9E6D5F3D6A3B917068 /* Products */,
-				B3D06FCC857389B2B85E825BEF0D2175 /* Targets Support Files */,
+				1B11506A29078B8A1B23327856C889F5 /* Pods */,
+				7AD50CFB157C7A7809F5F87168E8C1AE /* Products */,
+				93C8D97946D9ED411364779F2DF3A8E0 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		B3D06FCC857389B2B85E825BEF0D2175 /* Targets Support Files */ = {
+		86BDAFBE1CDAB32DD6F78B05AFA8BAAF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				23356F14A94043DAF57D9BE4DF1CB490 /* Pods-Slug_Route */,
+				1ECD1097C0056269144E3E70221F060C /* Info.plist */,
+				EAD79DC39D4B90D60CC846725093DC41 /* SVWebViewController.modulemap */,
+				780B2F9DDA3450E912A15D4F426CDE6C /* SVWebViewController.xcconfig */,
+				B9D8A0B16D43D6AB8DC854C574D0F067 /* SVWebViewController-dummy.m */,
+				AD6379D410127CE6F4CD4EF159D6E6C1 /* SVWebViewController-prefix.pch */,
+				4DEE2DD66ABCD55F6CC18F349655C2DE /* SVWebViewController-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SVWebViewController";
+			sourceTree = "<group>";
+		};
+		93C8D97946D9ED411364779F2DF3A8E0 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0E4BE0BF1B41FE7BE1C2024CF55E593D /* Pods-Slug_Route */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		AE1A6E58E4D9BC209F3900524E7641DE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				765F3BA02997DC4E8440D0B0741EC2C3 /* da.lproj */,
+				C4517A68EA2EE797B7E287D7DB909482 /* de.lproj */,
+				6DFA9FC55CE0645C9EA4F5A36CBC536C /* en.lproj */,
+				6C7BC0619516FC3F67ACFAA5EEF944BB /* es.lproj */,
+				645423C9754CD7FDA890853B5FB6790B /* es-ES.lproj */,
+				A6C5B9A1DC19FD03CBB351874575F4E9 /* fr.lproj */,
+				E4C4558CA1EDD90213A387553559A292 /* ja.lproj */,
+				80DF52CC47C76C217CE69D6081965812 /* pt.lproj */,
+				F97F72C02B845708850D7A4C47603CB9 /* SVWebViewController.bundle */,
+				BA389F4562471C42AE7734264EB38DE3 /* SVWebViewControllerActivityChrome-iPad.png */,
+				8F2BD9D331B82B48C05C2AC3833E14DF /* SVWebViewControllerActivityChrome-iPad@2x.png */,
+				D53A08EAEFDCF34BCE970DB59F2E3C70 /* SVWebViewControllerActivityChrome@2x.png */,
+				C690BB07EF6610B353AAC26AE064CF38 /* SVWebViewControllerActivitySafari-iPad.png */,
+				F9B1390D594A50DAF0EFCD93E77A5E6A /* SVWebViewControllerActivitySafari-iPad@2x.png */,
+				891884AD096B307229D6EE508E350C89 /* SVWebViewControllerActivitySafari@2x.png */,
+				D85DB061E19B816CE0EE6D05CE1A28E4 /* SVWebViewControllerBack.png */,
+				1175C52B22BAACB150B627533BC204BD /* SVWebViewControllerBack@2x.png */,
+				5A954460AEAED23A4FD14E01A087ECC5 /* SVWebViewControllerNext.png */,
+				E8E7A45AC1138837D1D1D2BBD4A061DA /* SVWebViewControllerNext@2x.png */,
+				3839D78D76D772E5F9678F822734F6A3 /* zh-Hans.lproj */,
+				E9857D471D8520703558049DE7F81ADC /* zh-Hant.lproj */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -149,33 +262,68 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E10253D9A6AF596CDA1C3BBE1F2FBFD6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F95DB7ACF73CF03040C57A3D42223A51 /* GoogleMaps.framework */,
-				36DB83CB4279B90D59054691B89501D1 /* GoogleMapsCore.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B46DACAA32B1B8468412FA9E4D81F689 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22B6160E06BA521583B2753F1495D404 /* SVModalWebViewController.h in Headers */,
+				CB57F478E8D8551EFB9828E3012B604A /* SVWebViewController-umbrella.h in Headers */,
+				4C702C0A6CF67B602BA689DF1FA66CD4 /* SVWebViewController.h in Headers */,
+				011C727CCD4B95415352015B16F1A51A /* SVWebViewControllerActivity.h in Headers */,
+				968B14CF6B88DA5B0B16E8F639E033F2 /* SVWebViewControllerActivityChrome.h in Headers */,
+				A233E00CED8D65E3DFC1DDE36B452BA4 /* SVWebViewControllerActivitySafari.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B0BF81BB9DBB254690A08D8D0B25C7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35F50D68412FA153120C33A9872282AA /* Pods-Slug_Route-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		584B50629751260A566F481BA8E0FC85 /* Pods-Slug_Route */ = {
+		B2E6F1818943A5D9E31E06587FE04A6A /* Pods-Slug_Route */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27884B9EBD12F8E28A58F596E28F5FCB /* Build configuration list for PBXNativeTarget "Pods-Slug_Route" */;
+			buildConfigurationList = 8C5ECFB16E46C50818AB0E4A836155CC /* Build configuration list for PBXNativeTarget "Pods-Slug_Route" */;
 			buildPhases = (
-				D3F33F7ACA2555E484545C3C16565E48 /* Sources */,
-				74DD19586C524305062EDBFCF4604D09 /* Frameworks */,
+				5DE1F75A1D38CAE57371A557F1EA0327 /* Sources */,
+				F5E6A460AE19538E275E5C265B2B6F62 /* Frameworks */,
+				C5B0BF81BB9DBB254690A08D8D0B25C7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3B2E52338C08A6707101918D5315403 /* PBXTargetDependency */,
+			);
+			name = "Pods-Slug_Route";
+			productName = "Pods-Slug_Route";
+			productReference = 4BAB236FF9A98DB606C0D1DECF6832F4 /* Pods_Slug_Route.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E0A274F9550A4599260A8DA7133CDAF2 /* SVWebViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CA115CDFC0AF9609B6047DFA81A4830 /* Build configuration list for PBXNativeTarget "SVWebViewController" */;
+			buildPhases = (
+				8C13409603F977877A7F867BE5F6B54F /* Sources */,
+				4B8EA3EA600AE2FFBE75A9611B70AF93 /* Frameworks */,
+				B46DACAA32B1B8468412FA9E4D81F689 /* Headers */,
+				6442235B9B38B2FA4FCEC3217AB78BF7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-Slug_Route";
-			productName = "Pods-Slug_Route";
-			productReference = EB4FC998C727CBA8DEA6D7163F224E9F /* libPods-Slug_Route.a */;
-			productType = "com.apple.product-type.library.static";
+			name = SVWebViewController;
+			productName = SVWebViewController;
+			productReference = 4738AC0D78CF0E762CE333A459C5899E /* SVWebViewController.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -194,114 +342,82 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 66DFD1692DFCEE9E6D5F3D6A3B917068 /* Products */;
+			productRefGroup = 7AD50CFB157C7A7809F5F87168E8C1AE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				584B50629751260A566F481BA8E0FC85 /* Pods-Slug_Route */,
+				B2E6F1818943A5D9E31E06587FE04A6A /* Pods-Slug_Route */,
+				E0A274F9550A4599260A8DA7133CDAF2 /* SVWebViewController */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		6442235B9B38B2FA4FCEC3217AB78BF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				705E7C066957D8F79ED4190224D1E084 /* da.lproj in Resources */,
+				255FB067D1E176FB3F081ADD940EDFDF /* de.lproj in Resources */,
+				969EA356C3CC166D572259B1D56B27BA /* en.lproj in Resources */,
+				5E4D6B87E0D38B215F85D659B8762509 /* es-ES.lproj in Resources */,
+				2F7197E434478A8F1455F820354A55A5 /* es.lproj in Resources */,
+				7A4FD6530DDF9A1510F79255511F3823 /* fr.lproj in Resources */,
+				AC13C82DC66F8D2FEF161BA09ABC4AD7 /* ja.lproj in Resources */,
+				D696972B4D5A29101BA2EFF54D76C835 /* pt.lproj in Resources */,
+				C36D24480EFCBD3DD8C62FBFCAFE92A1 /* SVWebViewController.bundle in Resources */,
+				D9371BCB277E1A5BBE97C87C7B5B4516 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
+				F0F55D1B885B605EAB405BFD6C65314B /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
+				0B0C6EB3782C4948A931107605130BD1 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
+				3A2F6743F797B5561FDE9DF4540F9A9B /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
+				33CC2C70F4AB727257E1C7B19AF542C3 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
+				69B2CA59862FF7795A2E3662BFDDABAC /* SVWebViewControllerActivitySafari@2x.png in Resources */,
+				A43882AC160AD8A5E86B888F046F665F /* SVWebViewControllerBack.png in Resources */,
+				EBE0445A0B3DE83814D0EA2494AC138D /* SVWebViewControllerBack@2x.png in Resources */,
+				C30AFCA57839A4A35B7AE17B675E07F1 /* SVWebViewControllerNext.png in Resources */,
+				FD955346E8F8C8E4DF7AA2FAA4EF9214 /* SVWebViewControllerNext@2x.png in Resources */,
+				23B6D8DA0E63F500A4DDF43D41308586 /* zh-Hans.lproj in Resources */,
+				D9FE3E0F2844FC8526ADA94F6EF87DD6 /* zh-Hant.lproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		D3F33F7ACA2555E484545C3C16565E48 /* Sources */ = {
+		5DE1F75A1D38CAE57371A557F1EA0327 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				411972DCD797A6B4E17E44EEBB73CC08 /* Pods-Slug_Route-dummy.m in Sources */,
+				D142410B2E15268C0CE45652E020EA9A /* Pods-Slug_Route-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C13409603F977877A7F867BE5F6B54F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B3E5DDF0D3E2BA4D34AD5DBEBDCEA97 /* SVModalWebViewController.m in Sources */,
+				6A64C77E6894532F5B13C5EC92B1B581 /* SVWebViewController-dummy.m in Sources */,
+				92B823C3CC8DAE557455A0E7649D2F8C /* SVWebViewController.m in Sources */,
+				A1592AA7072380A61F09212C43CE4D4C /* SVWebViewControllerActivity.m in Sources */,
+				34388A4A4C7B1C716E7209E0AC420B12 /* SVWebViewControllerActivityChrome.m in Sources */,
+				A2EF089880EE1693FFF8BEA6E731ED16 /* SVWebViewControllerActivitySafari.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C3B2E52338C08A6707101918D5315403 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SVWebViewController;
+			target = E0A274F9550A4599260A8DA7133CDAF2 /* SVWebViewController */;
+			targetProxy = 902EAB7FF43D0FA80D209CA97FE59E28 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		4262CD97304B496959CE0A37A9E08649 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB3FD2B67EA5645AEA836D262039B80B /* Pods-Slug_Route.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		4616A816EB071C2DD87A7F53172C598B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8175BFD41CD61098C8C49ACC9323D8BF /* Pods-Slug_Route.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		AADB9822762AD81BBAE83335B2AB1EB0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		B1B5EB0850F98CB5AECDB015B690777F /* Debug */ = {
+		015A368F878AC3E2CEAE21DDE8026304 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -337,7 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -345,23 +461,206 @@
 			};
 			name = Debug;
 		};
+		31F6703EF6791AEB8F485530958A472F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C1B13F95657531113A68900C4AE55E8 /* Pods-Slug_Route.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Slug_Route/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Slug_Route/Pods-Slug_Route.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Slug_Route;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		44CDBB6D11DE06DB64D6268622BDC47E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7B4B2B814A957138160902BEA9BDECF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 780B2F9DDA3450E912A15D4F426CDE6C /* SVWebViewController.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SVWebViewController/SVWebViewController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVWebViewController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SVWebViewController/SVWebViewController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SVWebViewController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BECC263DA3733F1C93EA30C6C51FE2BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 780B2F9DDA3450E912A15D4F426CDE6C /* SVWebViewController.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SVWebViewController/SVWebViewController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVWebViewController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SVWebViewController/SVWebViewController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SVWebViewController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EE55E8A607B24A4DB09FD40C838EA531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 474568E921B63353FBED045381CABB20 /* Pods-Slug_Route.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Slug_Route/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Slug_Route/Pods-Slug_Route.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Slug_Route;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		27884B9EBD12F8E28A58F596E28F5FCB /* Build configuration list for PBXNativeTarget "Pods-Slug_Route" */ = {
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4616A816EB071C2DD87A7F53172C598B /* Debug */,
-				4262CD97304B496959CE0A37A9E08649 /* Release */,
+				015A368F878AC3E2CEAE21DDE8026304 /* Debug */,
+				44CDBB6D11DE06DB64D6268622BDC47E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		4CA115CDFC0AF9609B6047DFA81A4830 /* Build configuration list for PBXNativeTarget "SVWebViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B1B5EB0850F98CB5AECDB015B690777F /* Debug */,
-				AADB9822762AD81BBAE83335B2AB1EB0 /* Release */,
+				BECC263DA3733F1C93EA30C6C51FE2BB /* Debug */,
+				7B4B2B814A957138160902BEA9BDECF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C5ECFB16E46C50818AB0E4A836155CC /* Build configuration list for PBXNativeTarget "Pods-Slug_Route" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31F6703EF6791AEB8F485530958A472F /* Debug */,
+				EE55E8A607B24A4DB09FD40C838EA531 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

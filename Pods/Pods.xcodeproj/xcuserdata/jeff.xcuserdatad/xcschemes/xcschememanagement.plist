@@ -9,10 +9,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SVWebViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>584B50629751260A566F481BA8E0FC85</key>
+		<key>B2E6F1818943A5D9E31E06587FE04A6A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0A274F9550A4599260A8DA7133CDAF2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

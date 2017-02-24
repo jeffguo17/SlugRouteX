@@ -7,22 +7,22 @@
 //
 
 import Foundation
-import GoogleMaps
+import MapKit
 
 class BusMarker: LocationObject {
-    var _marker: GMSMarker
+    var _marker: MapMarker
     
-    var marker: GMSMarker {
+    var marker: MapMarker {
         set { _marker = newValue }
         get { return _marker }
     }
     
-    init(id: Int, marker: GMSMarker, location: CLLocation, type: String) {
+    init(id: Int, marker: MapMarker, location: CLLocation, type: String) {
         _marker = marker
         super.init(id: id, location: location, type: type)
     }
     
-    init(id: Int, marker: GMSMarker, latitude: Double, longitude: Double, type: String) {
+    init(id: Int, marker: MapMarker, latitude: Double, longitude: Double, type: String) {
         _marker = marker
         super.init(id: id, lat: latitude, lon: longitude, type: type)
     }

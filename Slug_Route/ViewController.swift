@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import GoogleMaps
+import MapKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var popUpTableView: UITableView!
     @IBOutlet var popUpView: UIView!
@@ -23,8 +23,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.popUpView.removeFromSuperview()
         }
     }
+    @IBOutlet weak var mapView: MKMapView!
     
-    var mapView: GMSMapView?
     var busList = [Bus]()
     var busMarkerList = [BusMarker]()
     var visualEffectView: UIView!
@@ -42,19 +42,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Google Map Setup
-        GMSServices.provideAPIKey("AIzaSyDkE71XvOEUCMdIjRDU8FxWj4q7BYeU-ZE")
+        // Create a coordinate region that tells the map to display the Santa Cruz area
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(CLLocation(latitude: 36.988550, longitude: -122.0586165).coordinate, 2500, 2500)
         
-        let mapSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-45)
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 36.992550, longitude: -122.0586165, zoom: 14)
-        
-        mapView = GMSMapView.map(withFrame: mapSize, camera: camera)
-        
-        mapView?.isMyLocationEnabled = true
-        mapView?.settings.myLocationButton = true
-        
-        self.view.addSubview(mapView!)
+        mapView.setRegion(coordinateRegion, animated: true)
+        mapView.delegate = self
         
         //Navigation Bar Title
         let titleString = NSMutableAttributedString(string: "Slug Route", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
@@ -85,7 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         infoButton.addTarget(self, action: #selector(infoButtonAction), for: UIControlEvents.touchUpInside)
         
-        mapView?.addSubview(infoButton)
+        self.view.addSubview(infoButton)
         
         //Number of Service Label
         numBusLabel = InsetLabel(top:0, bottom: 0, left: 10, right: 10, rect: CGRect(x: 0, y: view.frame.height-45, width: self.view.frame.width/2, height: 45))
@@ -183,21 +175,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     private func drawBusStops() {
         for mBusStop in BusStops().innerLoopList {
-            let mMarker = GMSMarker(position: mBusStop.location.coordinate)
-            mMarker.title = mBusStop.name
-            mMarker.icon = UIImage(busStopImage: .orange_stop)
-            mMarker.snippet = BusStopType.innerStop.rawValue
-            mMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
-            mMarker.map = self.mapView
+            //let mMarker = GMSMarker(position: mBusStop.location.coordinate)
+            //mMarker.title = mBusStop.name
+            //mMarker.icon = UIImage(busStopImage: .orange_stop)
+            //mMarker.snippet = BusStopType.innerStop.rawValue
+            //mMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
+            //mMarker.map = self.mapView
+            
+            //let LatLng = CLLocationCoordinate2D(latitude: clientInfo["lat"].doubleValue, longitude: clientInfo["lon"].doubleValue)
+            
+            let mapMarker = MapMarker(coordinate: mBusStop.location.coordinate, title: mBusStop.name, subtitle: BusStopType.innerStop.rawValue, image: UIImage(busStopImage: .orange_stop), zOrder: CGFloat(0))
+            
+            mapView.addAnnotation(mapMarker)
         }
         
         for mBusStop in BusStops().outerLoopList {
+            /*
             let mMarker = GMSMarker(position: mBusStop.location.coordinate)
             mMarker.title = mBusStop.name
             mMarker.icon = UIImage(busStopImage: .blue_stop)
             mMarker.snippet = BusStopType.outerStop.rawValue
             mMarker.groundAnchor = CGPoint(x: 0.5, y:0.5)
             mMarker.map = self.mapView
+            */
+            
+            let mapMarker = MapMarker(coordinate: mBusStop.location.coordinate, title: mBusStop.name, subtitle: BusStopType.outerStop.rawValue, image: UIImage(busStopImage: .blue_stop), zOrder: CGFloat(0))
+            
+            mapView.addAnnotation(mapMarker)
         }
     }
     
@@ -219,7 +223,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if busList.count == 0 {
             for m in busMarkerList {
                 DispatchQueue.main.async {
-                    m.marker.map = nil
+                    self.mapView.removeAnnotation(m.marker)
                 }
             }
             busMarkerList.removeAll()
@@ -238,7 +242,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         let mIndex = busMarkerList.index(where: { $0 === m })
                         busMarkerList.remove(at: mIndex!)
                         DispatchQueue.main.async {
-                            m.marker.map = nil
+                            self.mapView.removeAnnotation(m.marker)
                         }
                         mBusMarker = nil
                     }
@@ -248,7 +252,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             if let mBusMarker = mBusMarker {
-                mBusMarker.marker.position = b.location.coordinate
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.25) {
+                        mBusMarker.marker.coordinate = b.location.coordinate
+                    }
+                }
             } else {
                 var busImage: UIImage?
                 
@@ -261,15 +269,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                  
                 DispatchQueue.main.async {
+                    /*
                     let newMarker = GMSMarker(position: b.location.coordinate)
                     newMarker.title = b.type
                     newMarker.icon = busImage
                     newMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
                     newMarker.zIndex = 1
                     newMarker.map = self.mapView
+                    */
                     
+                    let mapMarker = MapMarker(coordinate: b.location.coordinate, title: b.type, subtitle: "", image:busImage!, zOrder: CGFloat(1))
+                    self.mapView.addAnnotation(mapMarker)
                     
-                    self.busMarkerList.append(BusMarker(id: b.id, marker: newMarker, location: b.location, type: b.type))
+                    self.busMarkerList.append(BusMarker(id: b.id, marker: mapMarker, location: b.location, type: b.type))
                 }
                 
             }
@@ -290,7 +302,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             if removeCurrentMarker {
                 DispatchQueue.main.async {
-                    m.marker.map = nil
+                    self.mapView.removeAnnotation(m.marker)
                 }
                 busMarkerList.remove(at: i)
             }
@@ -435,11 +447,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
         if(position == FrontViewPosition.left) {
-            self.mapView?.settings.setAllGesturesEnabled(true)
+            self.mapView.isUserInteractionEnabled = true
         } else {
-            self.mapView?.settings.setAllGesturesEnabled(false)
+            self.mapView.isUserInteractionEnabled = false
         }
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // Better to make this class property
+        let annotationIdentifier = "AnnotationIdentifier"
+        
+        var annotationView: MKAnnotationView?
+        
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+            annotationView = dequeuedAnnotationView
+            annotationView?.annotation = annotation
+        } else {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+        }
+        
+        if let annotationView = annotationView {
+            // Configure your annotation view here
+            annotationView.canShowCallout = true
+            
+            let MapMarker = annotation as! MapMarker
+            annotationView.image = MapMarker.image
+            annotationView.layer.zPosition = MapMarker.zOrder!
+        }
+        return annotationView
+    }
+    
 }
-

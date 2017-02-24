@@ -1,16 +1,21 @@
 PODS:
-  - GoogleMaps (2.1.1):
-    - GoogleMaps/Maps (= 2.1.1)
-  - GoogleMaps/Base (2.1.1)
-  - GoogleMaps/Maps (2.1.1):
-    - GoogleMaps/Base
+  - SVWebViewController (1.0)
 
 DEPENDENCIES:
-  - GoogleMaps
+  - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
+
+EXTERNAL SOURCES:
+  SVWebViewController:
+    :git: https://github.com/TransitApp/SVWebViewController.git
+
+CHECKOUT OPTIONS:
+  SVWebViewController:
+    :commit: 9abad6b852b6c2ad19bb3c28532cce53719e2a7f
+    :git: https://github.com/TransitApp/SVWebViewController.git
 
 SPEC CHECKSUMS:
-  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
+  SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
 
-PODFILE CHECKSUM: 04bbd99037820f6421bd48f33e065af4baa7046b
+PODFILE CHECKSUM: 3e560638f8d0b9ce0a27eb4b08f1663611854809
 
 COCOAPODS: 1.1.1

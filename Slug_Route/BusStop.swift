@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GoogleMaps
+import MapKit
 
 class BusStop: LocationObject {
     private var _name: String

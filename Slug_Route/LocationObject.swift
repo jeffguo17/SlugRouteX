@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import GoogleMaps
+import MapKit
 
 class LocationObject {
     private var _id: Int

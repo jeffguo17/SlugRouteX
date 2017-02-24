@@ -21,10 +21,22 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4uh-8j-vAX">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4uh-8j-vAX" secondAttribute="trailing" id="UGy-26-Y8d"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4uh-8j-vAX" secondAttribute="bottom" id="ZAA-qK-OgL"/>
+                            <constraint firstItem="4uh-8j-vAX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gEF-Qu-dfW"/>
+                            <constraint firstItem="4uh-8j-vAX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ibW-eL-1Xi"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="F0J-7w-ygr"/>
                     <connections>
+                        <outlet property="mapView" destination="4uh-8j-vAX" id="oXe-p4-xSm"/>
                         <outlet property="popUpTableView" destination="bYO-zg-5Pp" id="1E9-nI-ggl"/>
                         <outlet property="popUpView" destination="cgd-G7-xbJ" id="Uz9-UM-3zI"/>
                     </connections>

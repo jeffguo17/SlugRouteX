@@ -15,15 +15,18 @@
 		1F6ED5DE1DCEDBCB0051DBB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6ED5DC1DCEDBCB0051DBB9 /* LaunchScreen.storyboard */; };
 		1F747C231DF63E6A0090176F /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F747C221DF63E6A0090176F /* SWRevealViewController.m */; };
 		1F747C251DF646AE0090176F /* SlideOutTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F747C241DF646AE0090176F /* SlideOutTableVC.swift */; };
+		1FA5F7091E5FE5BF00CABE18 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5F7081E5FE5BF00CABE18 /* MapMarker.swift */; };
 		1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA66D11DD2EC4100938940 /* BusStop.swift */; };
 		1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA66D31DD2ECF100938940 /* LocationObject.swift */; };
 		1FF8C06D1DD22FA4007105ED /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1FF8C06C1DD22FA4007105ED /* Podfile */; };
 		1FFFC4581DD17E5400318621 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFC4571DD17E5400318621 /* Bus.swift */; };
 		1FFFC45A1DD1858500318621 /* BusMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFFC4591DD1858500318621 /* BusMarker.swift */; };
-		B90539775BA590FAAD79118B /* libPods-Slug_Route.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B5DDBE6BD6CE54D171FC5B9 /* libPods-Slug_Route.a */; };
+		E71E0C74693BACA35E2AFE59 /* Pods_Slug_Route.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D7E4B1632783CA4497D85F6 /* Pods_Slug_Route.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		152CF5BC21C292138EC04667 /* Pods-Slug_Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slug_Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slug_Route/Pods-Slug_Route.release.xcconfig"; sourceTree = "<group>"; };
+		1D7E4B1632783CA4497D85F6 /* Pods_Slug_Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slug_Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F3F1BB51DD8E4F1003B108D /* MapKeyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapKeyCell.swift; path = ../MapKeyCell.swift; sourceTree = "<group>"; };
 		1F6ED5D01DCEDBCB0051DBB9 /* Slug_Route.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slug_Route.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6ED5D31DCEDBCB0051DBB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,14 +39,13 @@
 		1F747C211DF63E6A0090176F /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1F747C221DF63E6A0090176F /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		1F747C241DF646AE0090176F /* SlideOutTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutTableVC.swift; sourceTree = "<group>"; };
+		1FA5F7081E5FE5BF00CABE18 /* MapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMarker.swift; sourceTree = "<group>"; };
 		1FCA66D11DD2EC4100938940 /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		1FCA66D31DD2ECF100938940 /* LocationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationObject.swift; sourceTree = "<group>"; };
 		1FF8C06C1DD22FA4007105ED /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1FFFC4571DD17E5400318621 /* Bus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
 		1FFFC4591DD1858500318621 /* BusMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusMarker.swift; sourceTree = "<group>"; };
-		33B098F09E011496544E81A7 /* Pods-Slug_Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slug_Route.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Slug_Route/Pods-Slug_Route.debug.xcconfig"; sourceTree = "<group>"; };
-		5082B27A8C378A267B6684BE /* Pods-Slug_Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slug_Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slug_Route/Pods-Slug_Route.release.xcconfig"; sourceTree = "<group>"; };
-		6B5DDBE6BD6CE54D171FC5B9 /* libPods-Slug_Route.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Slug_Route.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D266077EBDC811CC6F197D43 /* Pods-Slug_Route.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slug_Route.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Slug_Route/Pods-Slug_Route.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B90539775BA590FAAD79118B /* libPods-Slug_Route.a in Frameworks */,
+				E71E0C74693BACA35E2AFE59 /* Pods_Slug_Route.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,8 +65,8 @@
 			children = (
 				1F6ED5D21DCEDBCB0051DBB9 /* Slug_Route */,
 				1F6ED5D11DCEDBCB0051DBB9 /* Products */,
-				B7160D24DCEDFB2BE9DAE695 /* Pods */,
-				B88186CA86048BA637A128A3 /* Frameworks */,
+				B33812B0CA8089184BA078BA /* Pods */,
+				D707F7C94792827C1D7D5BC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +94,7 @@
 				1FCA66D11DD2EC4100938940 /* BusStop.swift */,
 				1FCA66D31DD2ECF100938940 /* LocationObject.swift */,
 				1F747C241DF646AE0090176F /* SlideOutTableVC.swift */,
+				1FA5F7081E5FE5BF00CABE18 /* MapMarker.swift */,
 				1F747C1F1DF63E220090176F /* Supporting Files */,
 			);
 			path = Slug_Route;
@@ -107,19 +110,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B7160D24DCEDFB2BE9DAE695 /* Pods */ = {
+		B33812B0CA8089184BA078BA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				33B098F09E011496544E81A7 /* Pods-Slug_Route.debug.xcconfig */,
-				5082B27A8C378A267B6684BE /* Pods-Slug_Route.release.xcconfig */,
+				D266077EBDC811CC6F197D43 /* Pods-Slug_Route.debug.xcconfig */,
+				152CF5BC21C292138EC04667 /* Pods-Slug_Route.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B88186CA86048BA637A128A3 /* Frameworks */ = {
+		D707F7C94792827C1D7D5BC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6B5DDBE6BD6CE54D171FC5B9 /* libPods-Slug_Route.a */,
+				1D7E4B1632783CA4497D85F6 /* Pods_Slug_Route.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,12 +134,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F6ED5E21DCEDBCB0051DBB9 /* Build configuration list for PBXNativeTarget "Slug_Route" */;
 			buildPhases = (
-				19456697F17BD97AFF2535ED /* [CP] Check Pods Manifest.lock */,
+				7B9836C814C42A684DBD6D31 /* [CP] Check Pods Manifest.lock */,
 				1F6ED5CC1DCEDBCB0051DBB9 /* Sources */,
 				1F6ED5CD1DCEDBCB0051DBB9 /* Frameworks */,
 				1F6ED5CE1DCEDBCB0051DBB9 /* Resources */,
-				0E4BC70C03ADAD2023C4E69A /* [CP] Embed Pods Frameworks */,
-				9414AE058495A8E0BA8CF183 /* [CP] Copy Pods Resources */,
+				5A3206EA9B419E16CF1C9119 /* [CP] Embed Pods Frameworks */,
+				B222FAAB2A7FA2B7B1FE0183 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,7 +201,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E4BC70C03ADAD2023C4E69A /* [CP] Embed Pods Frameworks */ = {
+		5A3206EA9B419E16CF1C9119 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -213,7 +216,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Slug_Route/Pods-Slug_Route-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		19456697F17BD97AFF2535ED /* [CP] Check Pods Manifest.lock */ = {
+		7B9836C814C42A684DBD6D31 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -228,7 +231,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9414AE058495A8E0BA8CF183 /* [CP] Copy Pods Resources */ = {
+		B222FAAB2A7FA2B7B1FE0183 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA5F7091E5FE5BF00CABE18 /* MapMarker.swift in Sources */,
 				1F3F1BB61DD8E4F1003B108D /* MapKeyCell.swift in Sources */,
 				1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */,
 				1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */,
@@ -379,11 +383,13 @@
 		};
 		1F6ED5E31DCEDBCB0051DBB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33B098F09E011496544E81A7 /* Pods-Slug_Route.debug.xcconfig */;
+			baseConfigurationReference = D266077EBDC811CC6F197D43 /* Pods-Slug_Route.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 32X47N5V6X;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -397,11 +403,13 @@
 		};
 		1F6ED5E41DCEDBCB0051DBB9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5082B27A8C378A267B6684BE /* Pods-Slug_Route.release.xcconfig */;
+			baseConfigurationReference = 152CF5BC21C292138EC04667 /* Pods-Slug_Route.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 32X47N5V6X;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
