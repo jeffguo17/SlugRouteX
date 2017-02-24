@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SVWebViewController
 
 class SlideOutTableVC: UITableViewController {
     
@@ -50,25 +51,35 @@ class SlideOutTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         var url = "https://www.scmtd.com/media/bkg/20172/sched/"
+        var busNum = ""
         
         switch (indexPath.row) {
         case 0:
             url += "rte_10.pdf"
+            busNum = "10"
             break
         case 1:
             url += "rte_15.pdf"
+            busNum = "15"
             break
         case 2:
             url += "rte_16.pdf"
+            busNum = "16"
             break
         case 3:
             url += "rte_19.pdf"
+            busNum = "19"
             break
         default:
             url += "rte_20.pdf"
+            busNum = "20"
         }
         
-        UIApplication.shared.openURL(NSURL(string: url) as! URL)
+        let webViewController = SVModalWebViewController(address: url)
+        
+        webViewController!.title = "Bus \(busNum)"
+        
+        self.present(webViewController!, animated: true, completion: nil)
         
         self.revealViewController().revealToggle(animated: true)
     }
