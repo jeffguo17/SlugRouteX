@@ -31,9 +31,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var visualEffectView: UIView!
     var numBusLabel: UILabel!
     var timeLabel: UILabel!
-    var waitForTwoSecond = false
     var networkDisconnect = false
     let locationManager = CLLocationManager()
+    var runTime = 0
     
     // Map Key Names
     let mapName = [BusType.loop.rawValue,BusType.upperCampus.rawValue,BusType.outOfService.rawValue, BusType.nightOwl.rawValue, BusType.special.rawValue, BusStopType.innerStop.rawValue,BusStopType.outerStop.rawValue]
@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         mapView.delegate = self
         
         //Get user current location
-        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager.delegate = self
@@ -130,7 +130,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @objc private func fetchBusHttp() {
-        if waitForTwoSecond == false {
+        if runTime == 0 {
             let URL = NSURL(string: "http://bts.ucsc.edu:8081/location/get")
             
             let session = URLSession.shared
@@ -157,17 +157,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                 
                 do {
+                    self.runTime += 1
+                    self.showCurrentTime(async: true)
+                    
                     let jsonArray = try JSONSerialization.jsonObject(with: data!, options:
                         JSONSerialization.ReadingOptions.mutableContainers) as! [[String: AnyObject]]
                     
-                    self.waitForTwoSecond = true
                     self.setBusList(resultArray: jsonArray)
                     
                     if self.networkDisconnect {
                         self.networkDisconnect = false
                     }
                     
-                    self.showCurrentTime()
                 } catch let jsonError {
                     print("jsonError")
                     print(jsonError)
@@ -177,8 +178,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             task.resume()
         } else {
-            waitForTwoSecond = false
-            showCurrentTime()
+            self.runTime += 1
+            if runTime >= 3 {
+                self.runTime = 0
+            }
+            
+            self.showCurrentTime(async: false)
         }
         
     }
@@ -244,10 +249,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             if let mBusMarker = mBusMarker {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.25) {
-                        mBusMarker.marker.coordinate = b.location.coordinate
+                // if coordinates are different, update it
+                if mBusMarker.marker.coordinate.latitude != b.location.coordinate.latitude ||
+                    mBusMarker.marker.coordinate.longitude != b.location.coordinate.longitude {
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 0.25) {
+                            mBusMarker.marker.coordinate = b.location.coordinate
+                        }
                     }
+                    
                 }
             } else {
                 var busImage: UIImage?
@@ -261,15 +271,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                  
                 DispatchQueue.main.async {
-                    /*
-                    let newMarker = GMSMarker(position: b.location.coordinate)
-                    newMarker.title = b.type
-                    newMarker.icon = busImage
-                    newMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
-                    newMarker.zIndex = 1
-                    newMarker.map = self.mapView
-                    */
-                    
                     let mapMarker = MapMarker(coordinate: b.location.coordinate, title: b.type, subtitle: "", image:busImage!, zOrder: CGFloat(1))
                     self.mapView.addAnnotation(mapMarker)
                     
@@ -320,7 +321,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    private func showCurrentTime() {
+    private func showCurrentTime(async: Bool) {
         //Current Time Label Setup
         let dateFormatter = DateFormatter()
         
@@ -335,7 +336,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         currentTimeString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1.0), range: .init(location: 0, length: currentTimeString.length))
         
-        DispatchQueue.main.async {
+        if async {
+            DispatchQueue.main.async {
+                self.timeLabel.attributedText = currentTimeString
+            }
+        } else {
             self.timeLabel.attributedText = currentTimeString
         }
     }
@@ -447,6 +452,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        //Check if annotation is user location
         if annotation is MKUserLocation {
             return nil
         }

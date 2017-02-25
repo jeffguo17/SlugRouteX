@@ -1,7 +1,23 @@
 PODS:
+  - ESPullToRefresh (2.2)
+  - GoogleAPIClientForREST/Core (1.1.1):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Sheets (1.1.1):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
+  - GTMOAuth2 (1.1.4):
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.1.7):
+    - GTMSessionFetcher/Full (= 1.1.7)
+  - GTMSessionFetcher/Core (1.1.7)
+  - GTMSessionFetcher/Full (1.1.7):
+    - GTMSessionFetcher/Core (= 1.1.7)
   - SVWebViewController (1.0)
 
 DEPENDENCIES:
+  - ESPullToRefresh
+  - GoogleAPIClientForREST/Sheets
+  - GTMOAuth2
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
 
 EXTERNAL SOURCES:
@@ -14,8 +30,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/TransitApp/SVWebViewController.git
 
 SPEC CHECKSUMS:
+  ESPullToRefresh: 67aaf0c5cfc6c3b0396c3d4fa039078c878725d0
+  GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
+  GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
+  GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
 
-PODFILE CHECKSUM: 3e560638f8d0b9ce0a27eb4b08f1663611854809
+PODFILE CHECKSUM: adbe7a867c9ad3db88476c8477f1d2b9b98e6f1c
 
 COCOAPODS: 1.1.1

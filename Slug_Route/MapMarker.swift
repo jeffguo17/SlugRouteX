@@ -23,4 +23,5 @@ class MapMarker: NSObject, MKAnnotation {
         self.image = image
         self.zOrder = zOrder
     }
+
 }

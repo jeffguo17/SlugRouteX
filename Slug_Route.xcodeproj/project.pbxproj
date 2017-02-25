@@ -14,7 +14,7 @@
 		1F6ED5DB1DCEDBCB0051DBB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F6ED5DA1DCEDBCB0051DBB9 /* Assets.xcassets */; };
 		1F6ED5DE1DCEDBCB0051DBB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6ED5DC1DCEDBCB0051DBB9 /* LaunchScreen.storyboard */; };
 		1F747C231DF63E6A0090176F /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F747C221DF63E6A0090176F /* SWRevealViewController.m */; };
-		1F747C251DF646AE0090176F /* SlideOutTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F747C241DF646AE0090176F /* SlideOutTableVC.swift */; };
+		1F747C251DF646AE0090176F /* SlideOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F747C241DF646AE0090176F /* SlideOutViewController.swift */; };
 		1FA5F7091E5FE5BF00CABE18 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5F7081E5FE5BF00CABE18 /* MapMarker.swift */; };
 		1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA66D11DD2EC4100938940 /* BusStop.swift */; };
 		1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA66D31DD2ECF100938940 /* LocationObject.swift */; };
@@ -38,7 +38,7 @@
 		1F747C201DF63E690090176F /* Slug_Route-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Slug_Route-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F747C211DF63E6A0090176F /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1F747C221DF63E6A0090176F /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		1F747C241DF646AE0090176F /* SlideOutTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutTableVC.swift; sourceTree = "<group>"; };
+		1F747C241DF646AE0090176F /* SlideOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutViewController.swift; sourceTree = "<group>"; };
 		1FA5F7081E5FE5BF00CABE18 /* MapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMarker.swift; sourceTree = "<group>"; };
 		1FCA66D11DD2EC4100938940 /* BusStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		1FCA66D31DD2ECF100938940 /* LocationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationObject.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				1FFFC4591DD1858500318621 /* BusMarker.swift */,
 				1FCA66D11DD2EC4100938940 /* BusStop.swift */,
 				1FCA66D31DD2ECF100938940 /* LocationObject.swift */,
-				1F747C241DF646AE0090176F /* SlideOutTableVC.swift */,
+				1F747C241DF646AE0090176F /* SlideOutViewController.swift */,
 				1FA5F7081E5FE5BF00CABE18 /* MapMarker.swift */,
 				1F747C1F1DF63E220090176F /* Supporting Files */,
 			);
@@ -157,7 +157,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Jeff;
 				TargetAttributes = {
 					1F6ED5CF1DCEDBCB0051DBB9 = {
@@ -257,7 +257,7 @@
 				1F3F1BB61DD8E4F1003B108D /* MapKeyCell.swift in Sources */,
 				1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */,
 				1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */,
-				1F747C251DF646AE0090176F /* SlideOutTableVC.swift in Sources */,
+				1F747C251DF646AE0090176F /* SlideOutViewController.swift in Sources */,
 				1F747C231DF63E6A0090176F /* SWRevealViewController.m in Sources */,
 				1FFFC4581DD17E5400318621 /* Bus.swift in Sources */,
 				1F6ED5D61DCEDBCB0051DBB9 /* ViewController.swift in Sources */,

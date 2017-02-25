@@ -4,6 +4,26 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ESPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GTMOAuth2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleAPIClientForREST.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Slug_Route.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B2E6F1818943A5D9E31E06587FE04A6A</key>
+		<key>258DF281D067A8D20D93DB530E591107</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0A274F9550A4599260A8DA7133CDAF2</key>
+		<key>2A1A9CC99D0A075881B2E625E3308DE4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C40FBB7F92F86BF41AA3780BCB33FCFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DEAA6EAFD88F608B99F06F35994C1300</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0F7D77396D218B9A370B128FD3A89C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

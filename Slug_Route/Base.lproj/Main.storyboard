@@ -139,42 +139,31 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="RXq-3g-LxR" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="qh4-hh-If5"/>
                         <segue destination="qmb-UD-Jjz" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="dQK-GD-xnS"/>
+                        <segue destination="eWl-2W-VKk" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="hp6-qE-zUG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyX-6w-XLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-295" y="-206"/>
         </scene>
-        <!--Slide Out TableVC-->
-        <scene sceneID="Bbe-Ka-D75">
+        <!--Slide Out View Controller-->
+        <scene sceneID="DCl-jd-4Cx">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="RXq-3g-LxR" customClass="SlideOutTableVC" customModule="Slug_Route" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="28" sectionFooterHeight="28" id="vcz-jF-62n">
+                <viewController id="eWl-2W-VKk" customClass="SlideOutViewController" customModule="Slug_Route" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zhI-E1-vay"/>
+                        <viewControllerLayoutGuide type="bottom" id="SFw-tL-Y3u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eRg-Ub-uop">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SlideOutCell" rowHeight="57" id="PNu-xJ-oev">
-                                <rect key="frame" x="0.0" y="28" width="375" height="57"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PNu-xJ-oev" id="DxR-Ie-mz0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="RXq-3g-LxR" id="DBv-Wt-4qS"/>
-                            <outlet property="delegate" destination="RXq-3g-LxR" id="rGf-7X-MbQ"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vr6-DR-yRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPw-wk-kGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="511" y="-977"/>
+            <point key="canvasLocation" x="777" y="-926"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dPE-dC-1GT">

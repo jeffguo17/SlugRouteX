@@ -8,36 +8,65 @@
 
 import Foundation
 import SVWebViewController
+import ESPullToRefresh
 
-class SlideOutTableVC: UITableViewController {
+class SlideOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var BusNames = ["Bus 10 - UCSC Via High", "Bus 15 - UCSC Via Laurel West", "Bus 16 - UCSC Via Laurel East", "Bus 19 - UCSC Via Lower Bay", "Bus 20 - UCSC Via Westside"]
+    var tableView = UITableView()
     
     override func viewDidLoad() {
-        let header = UIView()
-        header.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.14)
-        header.backgroundColor = UIColor(red:0.25, green:0.32, blue:0.71, alpha:1.0)
+        super.viewDidLoad()
+        //Header View Setup
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.14)
+        headerView.backgroundColor = UIColor(red:0.25, green:0.32, blue:0.71, alpha:1.0)
         
-        let headerText = InsetLabel(top: 35, bottom: 0, left: 80, right: 0, rect: CGRect(x: 0, y: 0, width: 500, height: UIScreen.main.bounds.height*0.14))
+        let headerText = InsetLabel(top: 20, bottom: 0, left: 80, right: 0, rect: CGRect(x: 0, y: 0, width: 500, height: UIScreen.main.bounds.height*0.14))
         headerText.text = "UCSC"
         headerText.font = UIFont(name: "Helvetica", size: 34.0)
         headerText.textColor = UIColor(red: 1.00, green: 0.63, blue: 0.00, alpha: 1.0)
         
-        header.addSubview(headerText)
+        headerView.addSubview(headerText)
         
-        let footer = UIView()
-        footer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.55)
-        footer.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
+        self.view.addSubview(headerView)
+        
+        //Table View Setup
+        self.tableView = UITableView(frame: CGRect(x: 0, y: headerView.bounds.height, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SlideOutCell")
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.rowHeight = 55.0
 
-        self.tableView.tableHeaderView = header
+        self.view.addSubview(tableView)
+        
+        //tableview footer
+        let footer = UIView()
+        footer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.60)
+        footer.backgroundColor = UIColor(red:0.01, green:0.47, blue:0.74, alpha:1.0)
+        
         self.tableView.tableFooterView = footer
+        
+        _ = tableView.es_addPullToRefresh {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                
+                self.tableView.es_stopPullToRefresh(completion: true)
+            }
+        }
+        
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.es_startPullToRefresh()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return BusNames.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SlideOutCell", for: indexPath) as UITableViewCell
         
         cell.textLabel?.text = BusNames[indexPath.row]
@@ -48,7 +77,7 @@ class SlideOutTableVC: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         var url = "https://www.scmtd.com/media/bkg/20172/sched/"
         var busNum = ""
@@ -80,7 +109,7 @@ class SlideOutTableVC: UITableViewController {
         webViewController!.title = "Bus \(busNum)"
         
         self.present(webViewController!, animated: true, completion: nil)
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         self.revealViewController().revealToggle(animated: true)
     }
     
