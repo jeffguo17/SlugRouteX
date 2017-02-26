@@ -9,11 +9,20 @@
 import Foundation
 import SVWebViewController
 import ESPullToRefresh
+import GoogleAPIClientForREST
 
 class SlideOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var BusNames = ["Bus 10 - UCSC Via High", "Bus 15 - UCSC Via Laurel West", "Bus 16 - UCSC Via Laurel East", "Bus 19 - UCSC Via Lower Bay", "Bus 20 - UCSC Via Westside"]
+    private var BusNames = ["Bus 10 - UCSC Via High", "Bus 15 - UCSC Via Laurel West", "Bus 16 - UCSC Via Laurel East", "Bus 19 - UCSC Via Lower Bay", "Bus 20 - UCSC Via Westside"]
     var tableView = UITableView()
+    
+    private var gymCount = [String]()
+    private var gymCountColor = [CGFloat]()
+    var gymTableView = UITableView()
+    
+    //Google Sheet
+    private let service = GTLRSheetsService()
+    private let apiKey = "AIzaSyDm22uY8J4OXi0hjTmIHIlCg-yhykauhy8"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,35 +59,58 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.tableFooterView = footer
         
         _ = tableView.es_addPullToRefresh {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                
+            self.listGymLiveCount()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.tableView.es_stopPullToRefresh(completion: true)
             }
         }
         
+        //Google SpreadSheet Setup
+        service.apiKey = self.apiKey
+        
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
+        //Refresh TableView
         self.tableView.es_startPullToRefresh()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BusNames.count
+        if tableView == self.tableView {
+            return BusNames.count
+        }
+        return gymCount.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SlideOutCell", for: indexPath) as UITableViewCell
         
-        cell.textLabel?.text = BusNames[indexPath.row]
-        cell.textLabel?.font = UIFont(name: "Helvetica", size: 15.0)
-        cell.backgroundColor = UIColor(red:0.01, green:0.53, blue:0.82, alpha:1.0)
-        cell.textLabel?.textColor = UIColor.white
+        if tableView == self.tableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SlideOutCell", for: indexPath) as UITableViewCell
+        
+            cell.textLabel?.text = BusNames[indexPath.row]
+            cell.textLabel?.font = UIFont(name: "Helvetica", size: 15.0)
+            cell.textLabel?.textColor = UIColor.white
+            cell.backgroundColor = UIColor(red:0.19, green:0.25, blue:0.62, alpha:1.0)
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SlideOutCellGym", for: indexPath) as UITableViewCell
+        
+        cell.textLabel?.text = gymCount[indexPath.row]
+        //cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.textLabel?.font = UIFont(name: "Helvetica", size: 10)
+        let greenPercentage = self.gymCountColor[indexPath.row]
+        
+        cell.textLabel?.textColor = UIColor(red: greenPercentage, green: 1-greenPercentage, blue: 0.0, alpha: 1.0)
+        
+        cell.backgroundColor = UIColor(red:0.05, green:0.28, blue:0.63, alpha:1.0)
+
+        //UIColor(red:0.01, green:0.53, blue:0.82, alpha:1.0)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         var url = "https://www.scmtd.com/media/bkg/20172/sched/"
         var busNum = ""
         
@@ -111,6 +143,135 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         self.present(webViewController!, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
         self.revealViewController().revealToggle(animated: true)
+    }
+    
+    private func listGymLiveCount() {
+        let spreadSheetId = "1o1lQ6FFqr6RALPZ6I48cuWDd1clrPOlks8f3sWKx-9s"
+        let range = "Live Count Sheet!A36:E"
+        
+        let query = GTLRSheetsQuery_SpreadsheetsValuesGet.query(withSpreadsheetId: spreadSheetId, range: range)
+        
+        service.executeQuery(query, delegate: self, didFinish: #selector(self.displayResultWithTicket(ticket:finishedWithObjectResult:error:)))
+        
+    }
+    
+    @objc private func displayResultWithTicket(ticket: GTLRServiceTicket, finishedWithObjectResult result: GTLRSheets_ValueRange, error: NSError?) {
+        
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        
+        self.gymCount.removeAll()
+        
+        let gymHeaderView = UIView(frame: CGRect(x: 0, y:0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4))
+    
+        self.gymTableView = UITableView(frame: CGRect(x: -10, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4))
+        
+        self.gymTableView.isUserInteractionEnabled = false
+        
+        self.gymTableView.register(UITableViewCell.self, forCellReuseIdentifier: "SlideOutCellGym")
+        self.gymTableView.delegate = self
+        self.gymTableView.dataSource = self
+        
+        for row in result.values! {
+            let place = "\(row[0])"
+            
+            var colorMeter = Float()
+            var numberOfPeople = "\(row[1])"
+            
+            if let currNumPeople = Float("\(row[1])") {
+            switch(place) {
+                case "East Gym" :
+                    colorMeter = currNumPeople / 100
+                    numberOfPeople += "/100"
+                case "Pool" :
+                    colorMeter = currNumPeople / 150
+                    numberOfPeople += "/150"
+                case "Martial Arts Room" :
+                    colorMeter = currNumPeople / 40
+                    numberOfPeople += "/40"
+                case "Activities Room" :
+                    colorMeter = currNumPeople / 200
+                    numberOfPeople += "/200"
+                case "Dance Studio" :
+                    colorMeter = currNumPeople / 40
+                    numberOfPeople += "/40"
+                case "Racquetball Courts" :
+                    colorMeter = currNumPeople / 25
+                    numberOfPeople += "/25"
+                case "Multi-Purpose Room" :
+                    colorMeter = currNumPeople / 50
+                    numberOfPeople += "/50"
+                case "Wellness 1st Floor" :
+                    colorMeter = currNumPeople / 140
+                    numberOfPeople += "/140"
+                case "Wellness 2nd Floor" :
+                    colorMeter = currNumPeople / 140
+                    numberOfPeople += "/140"
+                default: colorMeter = 0.0
+                
+            }
+            }
+
+            self.gymCount.append("\(row[0]): \(numberOfPeople) || \(self.dateFormat(date: row[2] as! String)) \n")
+            self.gymCountColor.append(CGFloat(colorMeter))
+        }
+        
+        gymHeaderView.addSubview(self.gymTableView)
+        self.tableView.tableHeaderView = gymHeaderView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let MinHeight = CGFloat(25)
+        
+        if tableView == self.tableView {
+            return self.tableView.rowHeight
+        }
+        
+        let tHeight = tableView.bounds.height
+        
+        let temp = tHeight/CGFloat(gymCount.count)
+        
+        return temp > MinHeight ? temp : MinHeight
+    }
+    
+    private func dateFormat(date: String) -> String {
+        //Day of the month, Monday, Tuesday, Wednesday...
+        let dayIndex = date.index(date.startIndex, offsetBy: 3)
+        let day = date.substring(to: dayIndex) + ","
+        
+        //Month of the year, Jan, Feb, Mar...
+        let monthDate = date.components(separatedBy: ",")
+        var month = monthDate[1]
+        let monthIndex = month.index(month.startIndex, offsetBy: 4)
+        
+        //Day in the month, 01, 02, 03...
+        let monthDay = monthDate[1].components(separatedBy: " ")
+        month = month.substring(to: monthIndex) + " " + monthDay[2] + ", 17"
+        
+        let timeDate = date.components(separatedBy: "2017")
+        var time = timeDate[1]
+        let timeIndex = time.index(time.startIndex, offsetBy: 4)
+        time = time.substring(from: timeIndex)
+        
+        return day + month + " - " + time
+    }
+    
+    // Helper for showing an alert
+    private func showAlert(title : String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        let ok = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil
+        )
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
     
     class InsetLabel: UILabel {
