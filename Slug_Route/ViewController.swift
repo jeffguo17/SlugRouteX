@@ -126,7 +126,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.fetchBusHttp), userInfo: nil, repeats: true)
         
         self.drawBusStops()
-        //test
+        
     }
     
     @objc private func fetchBusHttp() {
