@@ -131,11 +131,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @objc private func fetchBusHttp() {
         if runTime == 0 {
-            let URL = NSURL(string: "http://bts.ucsc.edu:8081/location/get")
+            let url = URL(string: "http://bts.ucsc.edu:8081/location/get")
             
-            let session = URLSession.shared
-            
-            let task = session.dataTask(with: URL! as URL) {
+            let task = URLSession.shared.dataTask(with: url!) {
                 (data, response, error) in
                 
                 if error != nil {
