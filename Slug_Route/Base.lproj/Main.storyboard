@@ -69,6 +69,10 @@
                                                     <constraint firstAttribute="width" constant="40" id="sLI-Vn-dcl"/>
                                                 </constraints>
                                             </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JvR-P7-EGY">
+                                                <rect key="frame" x="76" y="5" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottomMargin" secondItem="dcv-bP-aON" secondAttribute="bottom" constant="2" id="0ZZ-EI-4ix"/>
@@ -80,6 +84,7 @@
                                         </constraints>
                                     </tableViewCellContentView>
                                     <connections>
+                                        <outlet property="mapDirectionImage" destination="JvR-P7-EGY" id="CSp-8V-ZY5"/>
                                         <outlet property="mapImage" destination="WEM-Rb-xd9" id="VlV-QB-UaL"/>
                                         <outlet property="mapName" destination="dcv-bP-aON" id="Ogv-2m-4lZ"/>
                                     </connections>
@@ -169,7 +174,7 @@
         <scene sceneID="dPE-dC-1GT">
             <objects>
                 <navigationController id="qmb-UD-Jjz" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6OC-MU-C41">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6OC-MU-C41">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -21,6 +21,9 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
     private var gymCountColor = [CGFloat]()
     private var gymCountValidTime = [Bool]()
     var gymTableView = UITableView()
+    var lastUpdateTime = Date()
+    var lastResult = [String]()
+    var showTutorial = true
     
     //Google Sheet
     private let service = GTLRSheetsService()
@@ -50,7 +53,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = 55.0
-
+        
         self.view.addSubview(tableView)
         
         //tableview footer
@@ -65,9 +68,9 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         
         //GYM TableView setup
-        let gymHeaderView = UIView(frame: CGRect(x: 0, y:0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4))
+        let gymHeaderView = UIView(frame: CGRect(x: 0, y:0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
         
-        self.gymTableView = UITableView(frame: CGRect(x: -12, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4))
+        self.gymTableView = UITableView(frame: CGRect(x: -12, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
         
         self.gymTableView.isUserInteractionEnabled = false
         
@@ -88,7 +91,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         //Refresh TableView
         self.tableView.es_startPullToRefresh()
@@ -105,7 +108,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         if tableView == self.tableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SlideOutCell", for: indexPath) as UITableViewCell
-        
+            
             cell.textLabel?.text = BusNames[indexPath.row]
             cell.textLabel?.font = UIFont(name: "Helvetica", size: 15.0)
             cell.textLabel?.textColor = UIColor.white
@@ -136,7 +139,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         gymCountAttriString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: greenPercentage, green: 1-greenPercentage, blue: 0.0, alpha: 1.0), range: .init(location: 0, length: gymCountPeople[indexPath.row].characters.count))
         
-
+        
         cell.textLabel?.attributedText = gymCountAttriString
         
         cell.backgroundColor = UIColor(red:0.05, green:0.28, blue:0.63, alpha:1.0)
@@ -186,6 +189,20 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func listGymLiveCount() {
+        if showTutorial {
+            self.showAlert(title: "Live Facility Counts", message: "Facility: Participants/Max Capacity\nRed text = Last update was 3+ hours ago \n\nFacility counts are typically posted every hour, and wellness center counts are posted every 30 minutes.")
+            showTutorial = false
+        }
+        
+        //Allow user to update every 3 minutes only
+        let now = Date()
+        if now >= lastUpdateTime {
+            lastUpdateTime = now.addingTimeInterval(3.0 * 60.0)
+        } else {
+            self.tableView.es_stopPullToRefresh(completion: true)
+            return
+        }
+        
         let spreadSheetId = "1o1lQ6FFqr6RALPZ6I48cuWDd1clrPOlks8f3sWKx-9s"
         let range = "Live Count Sheet!A36:E"
         
@@ -208,13 +225,16 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         self.gymCountColor.removeAll()
         
         for row in result.values! {
-            let place = "\(row[0])"
             
             var colorMeter = Float()
-            var numberOfPeople = "\(row[1])"
+            var numberOfPeople = "0"
             
-            if let currNumPeople = Float("\(row[1])") {
-            switch(place) {
+            if let _ = row[optional: 0], let _ = row[optional: 1], let currNumPeople = Float("\(row[1])") {
+                
+                let place = "\(row[0])"
+                numberOfPeople = "\(row[1])"
+                
+                switch(place) {
                 case "East Gym" :
                     colorMeter = currNumPeople / 100
                     numberOfPeople += "/100"
@@ -243,16 +263,26 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
                     colorMeter = currNumPeople / 140
                     numberOfPeople += "/140"
                 default: colorMeter = 0.0
+                    
+                }
                 
-            }
+                //Data: Number of People
+                self.gymCountPeople.append("\(row[0]): \(numberOfPeople)")
             }
             
-            let gymTime = self.dateFormat(date: "\(row[2])")
+            var gymTime = ""
+            if let _ = row[optional: 2] {
+                gymTime = "\(row[2])"
+                
+                if let time = self.dateFormat(date: "\(row[2])") {
+                    gymTime = time
+                }
+                
+                //Check if current Gym data has a relevant time
+                self.gymCountValidTime.append(self.checkValidTime(gymDate: "\(row[2])"))
+            }
             
-            //Check if current Gym data has a relevant time
-            self.gymCountValidTime.append(self.checkValidTime(gymDate: "\(row[2])"))
-            //Data: Number of People
-            self.gymCountPeople.append("\(row[0]): \(numberOfPeople)")
+            
             //Data: time
             self.gymCountTime.append("\(gymTime)")
             //Color meter for number of people, ranging from bright green to bright red
@@ -277,62 +307,113 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         return temp > MinHeight ? temp : MinHeight
     }
     
-    private func dateFormat(date: String) -> String {
-        var dateFormat = self.getGymDay(date: date) + ", "
-        dateFormat += self.getGymMonth(date: date) + " "
-        dateFormat += self.getGymMonthDay(date: date) + ", 17"
-        dateFormat += " - " + self.getGymTime(date: date)
+    private func dateFormat(date: String) -> String? {
+        var dateFormat = ""
+        
+        // If there are more than two commas, get the day "Monday, March"
+        if date.components(separatedBy: ",").count >= 3 {
+            if let gymDay = self.getGymDay(date: date) {
+                dateFormat += gymDay + ", "
+            }
+        }
+        
+        if let gymMonth = self.getGymMonth(date: date) {
+            dateFormat += gymMonth + " "
+        }
+        
+        if let gymMonthDay = self.getGymMonthDay(date: date) {
+            dateFormat += gymMonthDay + ", 17"
+        }
+        
+        if let gymTime = self.getGymTime(date: date) {
+            dateFormat += " - " + gymTime
+        }
+        
+        if dateFormat == "" {
+            return nil
+        }
         
         return dateFormat
     }
     
-    private func getGymDay(date: String) -> String {
+    private func getGymDay(date: String) -> String? {
         //Day of the month, Monday, Tuesday, Wednesday...
-        let dayIndex = date.index(date.startIndex, offsetBy: 3)
-        return date.substring(to: dayIndex)
+        if let dayIndex = date.index(date.startIndex, offsetBy: 3, limitedBy: date.endIndex) {
+            return date.substring(to: dayIndex)
+        }
+        return nil
     }
     
-    private func getGymMonth(date: String) -> String {
+    private func getGymMonth(date: String) -> String? {
         //Month of the year, Jan, Feb, Mar...
         let monthDate = date.components(separatedBy: ",")
-        var month = monthDate[1]
+        
+        //If there are 2 commas, that means "Friday, March", otherwise, "March".
+        let commaCount = monthDate.count - 2
+        
+        guard let _ = monthDate[optional: commaCount] else {
+            return nil
+        }
+        var month = monthDate[optional: commaCount]!
         
         //Check if there the first character is an empty space
         let emptySpaceIndex = month.index(month.startIndex, offsetBy: 0)
         if month[emptySpaceIndex] == " " {
             let emptySpace = month.components(separatedBy: " ")
-            month = emptySpace[1]
+            if let m = emptySpace[optional: 1] {
+                month = m
+            }
         }
         
-        let monthIndex = month.index(month.startIndex, offsetBy: 3)
-        return month.substring(to: monthIndex)
+        if let monthIndex = month.index(month.startIndex, offsetBy: 3, limitedBy: month.endIndex) {
+            return month.substring(to: monthIndex)
+        }
+        
+        return nil
     }
     
-    private func getGymMonthDay(date: String) -> String {
+    private func getGymMonthDay(date: String) -> String? {
         let monthDate = date.components(separatedBy: ",")
         //Day of the month, 01, 02, 03...
-        let monthDay = monthDate[1].components(separatedBy: " ")
-        return monthDay[monthDay.count-1]
+        
+        //If there are 2 commas, that means "Friday, March", otherwise, "March".
+        let commaCount = monthDate.count - 2
+        
+        if let monthDay = monthDate[optional: commaCount]?.components(separatedBy: " "), let m = monthDay[optional: monthDay.count-1] {
+            return m
+        }
+        
+        return nil
     }
     
-    private func getGymTime(date: String) -> String {
+    private func getGymTime(date: String) -> String? {
         let timeDate = date.components(separatedBy: "2017")
-        let time = timeDate[1]
+        
+        guard let _ = timeDate[optional: 1] else {
+            return nil
+        }
+        
+        let time = timeDate[optional: 1]!
         let emptySpace = time.components(separatedBy: " ")
         
         //1:20: .. 3:45:
-        let timeNum = emptySpace[emptySpace.count-2]
-        //AM .. PM
-        let meridies = emptySpace[emptySpace.count-1]
+        if let timeNum = emptySpace[optional: emptySpace.count-2], let meridies = emptySpace[optional: emptySpace.count-1] {
+            
+            let seperateByColon = timeNum.components(separatedBy: ":")
+            return seperateByColon[0] + ":" + seperateByColon[1] + " " + meridies
+        }
         
-        let seperateByColon = timeNum.components(separatedBy: ":")
-        
-        return seperateByColon[0] + ":" + seperateByColon[1] + " " + meridies
+        return nil
     }
     
     //Helper for checking if gym data has revelant time
     //If its 3 hours or more, return false
     private func checkValidTime(gymDate : String) -> Bool {
+        guard let _ = self.getGymMonth(date: gymDate) , let _ = self.getGymMonthDay(date: gymDate) ,
+            let _ = self.getGymTime(date: gymDate) else {
+                return false
+        }
+        
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "h: mm"
@@ -354,8 +435,8 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         let hour : Int? = Int(colon[0])
         
         //Gym Time Setup
-        let gymMonthAndDay = self.getGymMonth(date: gymDate) + " " + self.getGymMonthDay(date: gymDate)
-        let gymTime = " " + self.getGymTime(date: gymDate)
+        let gymMonthAndDay = self.getGymMonth(date: gymDate)! + " " + self.getGymMonthDay(date: gymDate)!
+        let gymTime = " " + self.getGymTime(date: gymDate)!
         
         let gymEmptySpace = gymTime.components(separatedBy: " ")
         let gymMeridies = gymEmptySpace[gymEmptySpace.count-1]
@@ -435,4 +516,11 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+}
+
+extension Collection where Indices.Iterator.Element == Index {
+    // Returns the element iff its within the bounds, else return nil
+    subscript (optional index: Index) -> Generator.Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
 }

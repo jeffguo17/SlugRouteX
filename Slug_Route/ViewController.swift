@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FontAwesome_swift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -44,10 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Create a coordinate region that tells the map to display the Santa Cruz area
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(CLLocation(latitude: 36.988550, longitude: -122.0586165).coordinate, 2500, 2500)
-        
-        mapView.setRegion(coordinateRegion, animated: true)
+        self.naviToUCSC()
         mapView.delegate = self
         
         //Get user current location
@@ -118,6 +116,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //Slide Out/ Hamburger menu Setup
         addSlideMenuButton()
         
+        //Adding navigation to origin button
+        addHomeButton()
+        
         self.revealViewController().delegate = self
         self.revealViewController().tapGestureRecognizer()
         self.revealViewController().panGestureRecognizer()
@@ -184,6 +185,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.showCurrentTime(async: false)
         }
         
+    }
+    
+    //Center Map to UCSC
+    func naviToUCSC() {
+        // Create a coordinate region that tells the map to display the Santa Cruz area
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(CLLocation(latitude: 36.988550, longitude: -122.0586165).coordinate, 2500, 2500)
+        
+        mapView.setRegion(coordinateRegion, animated: true)
     }
     
     private func drawBusStops() {
@@ -370,6 +379,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.mapImage.image = mapImage[indexPath.row]
         cell.mapName.text = mapName[indexPath.row]
         
+        if cell.mapName.text == "Inner Stop" {
+            cell.mapDirectionImage.image = UIImage.fontAwesomeIcon(name: .repeat, textColor: .black, size: CGSize(width: 50, height: 50))
+        } else if cell.mapName.text == "Outer Stop" {
+            cell.mapDirectionImage.image = UIImage.fontAwesomeIcon(name: .undo, textColor: .black, size: CGSize(width: 50, height: 50))
+        } else {
+            cell.mapDirectionImage.image = UIImage()
+        }
+        
         return cell
     }
     
@@ -377,27 +394,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func addSlideMenuButton(){
         let btnShowMenu = UIButton(type: UIButtonType.system)
         btnShowMenu.setImage(self.defaultMenuImage(), for: UIControlState())
-        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 20, height: 25)
         btnShowMenu.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: UIControlEvents.touchUpInside)
         let customBarItem = UIBarButtonItem(customView: btnShowMenu)
         self.navigationItem.leftBarButtonItem = customBarItem;
+    }
+    
+    //Airplane icon
+    func addHomeButton() {
+        let homeButton = UIButton(type: UIButtonType.system)
+        homeButton.setImage(UIImage.fontAwesomeIcon(name: .paperPlaneO, textColor: self.view.tintColor, size: CGSize(width: 30, height: 30)), for: UIControlState())
+        homeButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        homeButton.addTarget(self, action: #selector(naviToUCSC), for: .touchUpInside)
+        
+        let customBarItem = UIBarButtonItem(customView: homeButton)
+        self.navigationItem.rightBarButtonItem = customBarItem
     }
     
     // triple line menu icon
     func defaultMenuImage() -> UIImage {
         var defaultMenuImage = UIImage()
         
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 20, height: 22), false, 0.0)
         
         UIColor.black.setFill()
-        UIBezierPath(rect: CGRect(x: 0, y: 3, width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 10, width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 17, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 3, width: 20, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 10, width: 20, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 17, width: 20, height: 1)).fill()
         
         UIColor.white.setFill()
-        UIBezierPath(rect: CGRect(x: 0, y: 4, width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 11,  width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 18, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 4, width: 20, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 11,  width: 20, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 18, width: 20, height: 1)).fill()
         
         defaultMenuImage = UIGraphicsGetImageFromCurrentImageContext()!
         
@@ -445,6 +473,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.mapView.isUserInteractionEnabled = true
         } else {
             self.mapView.isUserInteractionEnabled = false
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        view.layer.zPosition = 2
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if let mView = view.annotation as? MapMarker, let z = mView.zOrder {
+            view.layer.zPosition = z
         }
     }
     

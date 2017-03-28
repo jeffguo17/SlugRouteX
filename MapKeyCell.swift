@@ -12,6 +12,7 @@ class MapKeyCell: UITableViewCell {
 
     @IBOutlet weak var mapImage: UIImageView!
     @IBOutlet weak var mapName: UILabel!
+    @IBOutlet weak var mapDirectionImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

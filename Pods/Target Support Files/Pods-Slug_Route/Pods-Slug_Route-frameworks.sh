@@ -85,12 +85,14 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ESPullToRefresh/ESPullToRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleAPIClientForREST/GoogleAPIClientForREST.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVWebViewController/SVWebViewController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ESPullToRefresh/ESPullToRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleAPIClientForREST/GoogleAPIClientForREST.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVWebViewController/SVWebViewController.framework"

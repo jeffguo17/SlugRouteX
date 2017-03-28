@@ -1,5 +1,6 @@
 PODS:
   - ESPullToRefresh (2.2)
+  - FontAwesome.swift (1.0.0)
   - GoogleAPIClientForREST/Core (1.1.1):
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAPIClientForREST/Sheets (1.1.1):
@@ -14,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - ESPullToRefresh
+  - FontAwesome.swift
   - GoogleAPIClientForREST/Sheets (~> 1.1.1)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
 
@@ -28,10 +30,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ESPullToRefresh: 67aaf0c5cfc6c3b0396c3d4fa039078c878725d0
+  FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
 
-PODFILE CHECKSUM: 9617066ec87c2a1c86d8e7a83605307f2d5f94b4
+PODFILE CHECKSUM: bd98b0f2c77ee3f07e809d54a2f7ec9a4d1af4c5
 
 COCOAPODS: 1.1.1

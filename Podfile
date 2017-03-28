@@ -6,4 +6,5 @@ target 'Slug_Route' do
     pod 'SVWebViewController', :git => 'https://github.com/TransitApp/SVWebViewController.git'
     pod 'ESPullToRefresh'
     pod 'GoogleAPIClientForREST/Sheets', '~> 1.1.1'
+    pod 'FontAwesome.swift'
 end
