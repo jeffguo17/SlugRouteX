@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09CEAF471F87093800221F5E /* MapLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CEAF461F87093800221F5E /* MapLabel.swift */; };
 		1F3F1BB61DD8E4F1003B108D /* MapKeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3F1BB51DD8E4F1003B108D /* MapKeyCell.swift */; };
 		1F6ED5D41DCEDBCB0051DBB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6ED5D31DCEDBCB0051DBB9 /* AppDelegate.swift */; };
 		1F6ED5D61DCEDBCB0051DBB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6ED5D51DCEDBCB0051DBB9 /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09CEAF461F87093800221F5E /* MapLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLabel.swift; sourceTree = "<group>"; };
 		152CF5BC21C292138EC04667 /* Pods-Slug_Route.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Slug_Route.release.xcconfig"; path = "Pods/Target Support Files/Pods-Slug_Route/Pods-Slug_Route.release.xcconfig"; sourceTree = "<group>"; };
 		1D7E4B1632783CA4497D85F6 /* Pods_Slug_Route.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Slug_Route.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F3F1BB51DD8E4F1003B108D /* MapKeyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapKeyCell.swift; path = ../MapKeyCell.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				1FCA66D31DD2ECF100938940 /* LocationObject.swift */,
 				1F747C241DF646AE0090176F /* SlideOutViewController.swift */,
 				1FA5F7081E5FE5BF00CABE18 /* MapMarker.swift */,
+				09CEAF461F87093800221F5E /* MapLabel.swift */,
 				1F747C1F1DF63E220090176F /* Supporting Files */,
 			);
 			path = Slug_Route;
@@ -207,9 +210,26 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Slug_Route/Pods-Slug_Route-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVWebViewController/SVWebViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVWebViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -222,13 +242,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Slug_Route-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B222FAAB2A7FA2B7B1FE0183 /* [CP] Copy Pods Resources */ = {
@@ -255,6 +278,7 @@
 			files = (
 				1FA5F7091E5FE5BF00CABE18 /* MapMarker.swift in Sources */,
 				1F3F1BB61DD8E4F1003B108D /* MapKeyCell.swift in Sources */,
+				09CEAF471F87093800221F5E /* MapLabel.swift in Sources */,
 				1FCA66D21DD2EC4100938940 /* BusStop.swift in Sources */,
 				1FCA66D41DD2ECF100938940 /* LocationObject.swift in Sources */,
 				1F747C251DF646AE0090176F /* SlideOutViewController.swift in Sources */,
@@ -391,13 +415,14 @@
 				DEVELOPMENT_TEAM = 32X47N5V6X;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.G12017.Jeff.SlugRouteX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Slug_Route/Slug_Route-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -411,12 +436,13 @@
 				DEVELOPMENT_TEAM = 32X47N5V6X;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = Slug_Route/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.G12017.Jeff.SlugRouteX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Slug_Route/Slug_Route-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

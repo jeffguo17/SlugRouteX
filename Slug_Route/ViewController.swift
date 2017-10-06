@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 import FontAwesome_swift
+import NotificationBannerSwift
+import SystemConfiguration
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -35,6 +37,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var networkDisconnect = false
     let locationManager = CLLocationManager()
     var runTime = 0
+    var slowConnection = false
+    var noSlugRouteConnection = false
+    
+    let noInternetBanner = NotificationBanner(title: "No Internet Connection", subtitle: "Please Check Your Internet Connection", style: .danger)
+    
+    let noSlugRouteBanner = NotificationBanner(title: "Slug Route Is Under Maintenance", subtitle: "We apologize for the inconvenience", style: .danger)
+    
+    let slowConnectionBanner = NotificationBanner(title: "Connecting...", subtitle: "You may have a slow internet connection", style: .warning)
     
     // Map Key Names
     let mapName = [BusType.loop.rawValue,BusType.upperCampus.rawValue,BusType.outOfService.rawValue, BusType.nightOwl.rawValue, BusType.special.rawValue, BusStopType.innerStop.rawValue,BusStopType.outerStop.rawValue]
@@ -128,28 +138,68 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.drawBusStops()
         
+        //College Annotations
+        let mapLabel = MapLabel(coordinate: CLLocationCoordinate2D(latitude: 37.001006, longitude: -122.058368), title: "College Ten", subtitle: "Social Justice and Community")
+        mapView.addAnnotation(mapLabel)
+        
     }
     
     @objc private func fetchBusHttp() {
+        
         if runTime == 0 {
             let url = URL(string: "http://bts.ucsc.edu:8081/location/get")
+            self.slowConnection = true
             
             let task = URLSession.shared.dataTask(with: url!) {
                 (data, response, error) in
+                self.slowConnection = false
                 
                 if error != nil {
-                    if self.networkDisconnect == false {
-                        let offlineString = NSMutableAttributedString(string: "No Internet Connection", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
-                        
-                        offlineString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0), range: .init(location: 0, length: offlineString.length))
-                        
-                        DispatchQueue.main.async {
-                            self.numBusLabel.attributedText = offlineString
-                            self.timeLabel.textColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0)
+                    
+                    self.busList.removeAll()
+                    
+                    if error?._code == NSURLErrorTimedOut {
+                        if self.networkDisconnect {
+                            DispatchQueue.main.async {
+                                self.noInternetBanner.dismiss()
+                            }
+                            self.networkDisconnect = false
                         }
                         
-                        self.networkDisconnect = true
-                        self.busList.removeAll()
+                        if self.noSlugRouteConnection == false {
+                            
+                            self.noSlugRouteBanner.show(bannerPosition: .bottom, on: self)
+                            self.noSlugRouteBanner.autoDismiss = false
+                            
+                            self.noSlugRouteConnection = true
+                        }
+                        
+                    } else {
+                        if self.noSlugRouteConnection {
+                            DispatchQueue.main.async {
+                                self.noSlugRouteBanner.dismiss()
+                            }
+                            self.noSlugRouteConnection = false
+                        }
+                        
+                        if self.networkDisconnect == false {
+                            /*
+                             let offlineString = NSMutableAttributedString(string: "No Internet Connection", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 25.0)!])
+                             
+                             offlineString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0), range: .init(location: 0, length: offlineString.length))
+                             
+                             DispatchQueue.main.async {
+                             self.numBusLabel.attributedText = offlineString
+                             self.timeLabel.textColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1.0)
+                             }
+                             */
+                            
+                            
+                            self.noInternetBanner.show(bannerPosition: .bottom, on: self)
+                            self.noInternetBanner.autoDismiss = false
+                            
+                            self.networkDisconnect = true
+                        }
                     }
                     
                     return
@@ -165,7 +215,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.setBusList(resultArray: jsonArray)
                     
                     if self.networkDisconnect {
+                        DispatchQueue.main.async {
+                            self.noInternetBanner.dismiss()
+                        }
                         self.networkDisconnect = false
+                    }
+                    
+                    if self.noSlugRouteConnection {
+                        DispatchQueue.main.async {
+                            self.noSlugRouteBanner.dismiss()
+                        }
+                        self.noSlugRouteConnection = false
                     }
                     
                 } catch let jsonError {
@@ -173,6 +233,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     print(jsonError)
                 }
                 
+            }
+            
+            if self.slowConnection {
+                if isConnectedToNetwork() {
+                    if self.networkDisconnect {
+                        DispatchQueue.main.async {
+                            self.noInternetBanner.dismiss()
+                        }
+                        self.networkDisconnect = false
+                    }
+                }
+                
+                if NotificationBannerQueue.default.numberOfBanners < 1 {
+                   self.slowConnectionBanner.show(bannerPosition: .bottom, on: self)
+                }
             }
             
             task.resume()
@@ -513,8 +588,64 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 annotationView.image = MapMarker.image
                 annotationView.layer.zPosition = MapMarker.zOrder!
             }
+            
+            if let MapLabel = annotation as? MapLabel {
+                let coordView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+                
+                coordView.layer.cornerRadius = 6.0
+                coordView.layer.borderWidth = 1.0
+                coordView.layer.borderColor = UIColor.black.cgColor
+                coordView.backgroundColor =  UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 0.70)
+                
+                let labelText = UILabel(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+                labelText.font = labelText.font.withSize(7)
+                labelText.text = MapLabel.title
+                labelText.numberOfLines = 5
+                labelText.textAlignment = .center
+                labelText.textColor = UIColor.black
+                labelText.backgroundColor = UIColor.clear
+                
+                coordView.addSubview(labelText)
+                annotationView.addSubview(coordView)
+            }
+            
         }
         return annotationView
+    }
+    
+    //Checks if user has internet
+    //https://stackoverflow.com/questions/30743408/check-for-internet-connection-with-swift
+    func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        
+        /* Only Working for WIFI
+         let isReachable = flags == .reachable
+         let needsConnection = flags == .connectionRequired
+         
+         return isReachable && !needsConnection
+         */
+        
+        // Working for Cellular and WIFI
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        let ret = (isReachable && !needsConnection)
+        
+        return ret
+        
     }
     
 }

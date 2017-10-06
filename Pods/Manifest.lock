@@ -11,12 +11,18 @@ PODS:
   - GTMSessionFetcher/Core (1.1.7)
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
+  - MarqueeLabel/Swift (3.1.3)
+  - NotificationBannerSwift (1.4.3):
+    - MarqueeLabel/Swift
+    - SnapKit (~> 3.2)
+  - SnapKit (3.2.0)
   - SVWebViewController (1.0)
 
 DEPENDENCIES:
   - ESPullToRefresh
   - FontAwesome.swift
   - GoogleAPIClientForREST/Sheets (~> 1.1.1)
+  - NotificationBannerSwift
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController.git`)
 
 EXTERNAL SOURCES:
@@ -33,8 +39,11 @@ SPEC CHECKSUMS:
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
+  MarqueeLabel: baa5753dcbd36dca080e1f5c589a665aa5c906f1
+  NotificationBannerSwift: c12fba5a18e839b350b1279d0eed1a5f910348c2
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SVWebViewController: aa2e18a41ff5f45be7aeec8e92ca5bcc50b5ebb1
 
-PODFILE CHECKSUM: bd98b0f2c77ee3f07e809d54a2f7ec9a4d1af4c5
+PODFILE CHECKSUM: d081ec0411de459c336302be2ffbe970697b4a78
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.3.1

@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target 'Slug_Route' do
@@ -7,4 +7,5 @@ target 'Slug_Route' do
     pod 'ESPullToRefresh'
     pod 'GoogleAPIClientForREST/Sheets', '~> 1.1.1'
     pod 'FontAwesome.swift'
+    pod 'NotificationBannerSwift'
 end

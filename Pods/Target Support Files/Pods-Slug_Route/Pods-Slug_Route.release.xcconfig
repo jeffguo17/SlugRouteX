@@ -1,11 +1,11 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/ESPullToRefresh" "$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher" "$PODS_CONFIGURATION_BUILD_DIR/GoogleAPIClientForREST" "$PODS_CONFIGURATION_BUILD_DIR/SVWebViewController"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/ESPullToRefresh" "$PODS_CONFIGURATION_BUILD_DIR/FontAwesome.swift" "$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher" "$PODS_CONFIGURATION_BUILD_DIR/GoogleAPIClientForREST" "$PODS_CONFIGURATION_BUILD_DIR/MarqueeLabel" "$PODS_CONFIGURATION_BUILD_DIR/NotificationBannerSwift" "$PODS_CONFIGURATION_BUILD_DIR/SVWebViewController" "$PODS_CONFIGURATION_BUILD_DIR/SnapKit"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) GTLR_USE_FRAMEWORK_IMPORTS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/ESPullToRefresh/ESPullToRefresh.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher/GTMSessionFetcher.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/GoogleAPIClientForREST/GoogleAPIClientForREST.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SVWebViewController/SVWebViewController.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "ESPullToRefresh" -framework "GTMSessionFetcher" -framework "GoogleAPIClientForREST" -framework "SVWebViewController"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/ESPullToRefresh/ESPullToRefresh.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/FontAwesome.swift/FontAwesome_swift.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/GTMSessionFetcher/GTMSessionFetcher.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/GoogleAPIClientForREST/GoogleAPIClientForREST.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/MarqueeLabel/MarqueeLabel.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/NotificationBannerSwift/NotificationBannerSwift.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SVWebViewController/SVWebViewController.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SnapKit/SnapKit.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "ESPullToRefresh" -framework "FontAwesome_swift" -framework "GTMSessionFetcher" -framework "GoogleAPIClientForREST" -framework "MarqueeLabel" -framework "NotificationBannerSwift" -framework "SVWebViewController" -framework "SnapKit"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods

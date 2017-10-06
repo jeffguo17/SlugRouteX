@@ -13,7 +13,7 @@ import GoogleAPIClientForREST
 
 class SlideOutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    private var BusNames = ["Bus 10 - UCSC Via High", "Bus 15 - UCSC Via Laurel West", "Bus 16 - UCSC Via Laurel East", "Bus 19 - UCSC Via Lower Bay", "Bus 20 - UCSC Via Westside"]
+    private var BusNames = ["Bus 10 - UCSC Via High", "Bus 15 - UCSC Via Laurel West", "Bus 16 - UCSC Via Laurel East", "Bus 19 - UCSC Via Lower Bay", "Bus 20 - UCSC Via Westside", "Bus 22 - UCSC/Coastal Science"]
     var tableView = UITableView()
     
     private var gymCountPeople = [String]()
@@ -66,11 +66,10 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         //Google SpreadSheet Setup
         service.apiKey = self.apiKey
         
-        
         //GYM TableView setup
-        let gymHeaderView = UIView(frame: CGRect(x: 0, y:0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
+        let gymHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.60 + 100))
         
-        self.gymTableView = UITableView(frame: CGRect(x: -12, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6))
+        self.gymTableView = UITableView(frame: CGRect(x: 0, y: 50, width: UIScreen.main.bounds.width-60, height: UIScreen.main.bounds.height*0.6))
         
         self.gymTableView.isUserInteractionEnabled = false
         
@@ -81,6 +80,47 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         self.gymTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1))
         
         gymHeaderView.addSubview(self.gymTableView)
+        
+        //Live Facility Count
+        let gymTableViewHeader = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        gymTableViewHeader.backgroundColor = UIColor(red:0.05, green:0.28, blue:0.63, alpha:1.0)
+        let gymTableViewHeaderLabel = UILabel(frame: CGRect(x: 10, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        gymTableViewHeaderLabel.text = "Live Facility Counts"
+        gymTableViewHeaderLabel.textColor = UIColor(red: 0, green: 1, blue: 0.4824, alpha: 1.0)
+        
+        gymTableViewHeader.addSubview(gymTableViewHeaderLabel)
+        
+        //Live Facility Count Line Seperator (Bottom)
+        let gymTableViewHeaderBottomLine = UIView(frame: CGRect(x: 0, y: gymTableViewHeader.bounds.height-1, width: UIScreen.main.bounds.width, height: 1))
+        gymTableViewHeaderBottomLine.backgroundColor = UIColor.lightGray
+    
+        gymTableViewHeader.addSubview(gymTableViewHeaderBottomLine)
+        
+        gymHeaderView.addSubview(gymTableViewHeader)
+        
+        //Metro Bus tableview header
+        let metroBusTableViewHeader = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height*0.6 + 50, width: UIScreen.main.bounds.width, height: 50))
+        metroBusTableViewHeader.backgroundColor = UIColor(red:0.19, green:0.25, blue:0.62, alpha:1.0)
+        let metroBusTableViewHeaderLabel = UILabel(frame: CGRect(x: 10, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        metroBusTableViewHeaderLabel.text = "Metro Schedule"
+        metroBusTableViewHeaderLabel.textColor = UIColor.white
+        
+        metroBusTableViewHeader.addSubview(metroBusTableViewHeaderLabel)
+        
+        //Metro Bus tableview header line seperator (TOP)
+        let metroBusTableViewTopLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 1))
+        metroBusTableViewTopLine.backgroundColor = UIColor.black
+        
+        metroBusTableViewHeader.addSubview(metroBusTableViewTopLine)
+        
+        //Metro Bus tableview header line seperator (Bottom)
+        let metroBusTableViewBottomLine = UIView(frame: CGRect(x:0, y: metroBusTableViewHeader.bounds.height-1, width:UIScreen.main.bounds.width, height: 1))
+        metroBusTableViewBottomLine.backgroundColor = UIColor.white
+        
+        metroBusTableViewHeader.addSubview(metroBusTableViewBottomLine)
+        
+        gymHeaderView.addSubview(metroBusTableViewHeader)
+        
         
         self.tableView.tableHeaderView = gymHeaderView
         
@@ -120,27 +160,29 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "SlideOutCellGym", for: indexPath) as UITableViewCell
         
         //GymTableView String
-        let gymCountString = gymCountPeople[indexPath.row] + "    " + gymCountTime[indexPath.row] + "\n"
+        let gymCountString = "\n" + gymCountPeople[indexPath.row] + "\n" + gymCountTime[indexPath.row]
         
         //GymTableView String Font
         let gymCountAttriString = NSMutableAttributedString(string: "\(gymCountString)", attributes: [NSFontAttributeName: UIFont(name: "Helvetica", size: 10.0)!])
         
         //GymTableView TimeTextColor
-        var timeTextColor = UIColor.green
-        if !gymCountValidTime[indexPath.row] {
-            timeTextColor = UIColor.red
-        }
+        //var timeTextColor = UIColor.green
+        //if !gymCountValidTime[indexPath.row] {
+        //    timeTextColor = UIColor.red
+        //}
         
         //GymTableView Time color Setup
-        gymCountAttriString.addAttribute(NSForegroundColorAttributeName, value: timeTextColor, range: .init(location: gymCountPeople[indexPath.row].characters.count, length: gymCountString.characters.count-gymCountPeople[indexPath.row].characters.count))
+        gymCountAttriString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 1, green: 1, blue: 1, alpha: 1.0), range: .init(location: gymCountPeople[indexPath.row].characters.count, length: gymCountString.characters.count-gymCountPeople[indexPath.row].characters.count))
         
         //GymTableView Number of People color Setup
         let greenPercentage = self.gymCountColor[indexPath.row]
         
-        gymCountAttriString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: greenPercentage, green: 1-greenPercentage, blue: 0.0, alpha: 1.0), range: .init(location: 0, length: gymCountPeople[indexPath.row].characters.count))
-        
+        gymCountAttriString.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: greenPercentage, green: 1-greenPercentage, blue: 0.0, alpha: 1.0), range: .init(location: 1, length: gymCountPeople[indexPath.row].characters.count))
         
         cell.textLabel?.attributedText = gymCountAttriString
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell.textLabel?.numberOfLines = 0
+        cell.sizeToFit()
         
         cell.backgroundColor = UIColor(red:0.05, green:0.28, blue:0.63, alpha:1.0)
         
@@ -148,29 +190,32 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var url = "https://www.scmtd.com/media/bkg/20172/sched/"
+        var url = "https://www.scmtd.com/media/bkg/20181/sched/"
         var busNum = ""
         
         switch (indexPath.row) {
         case 0:
             url += "rte_10.pdf"
-            busNum = "10"
+            busNum = "10 - UCSC Via High"
             break
         case 1:
             url += "rte_15.pdf"
-            busNum = "15"
+            busNum = "15 - UCSC Via Laurel West"
             break
         case 2:
             url += "rte_16.pdf"
-            busNum = "16"
+            busNum = "16 - UCSC Via Laurel East"
             break
         case 3:
             url += "rte_19.pdf"
-            busNum = "19"
+            busNum = "19 - UCSC Via Lower Bay"
             break
-        default:
+        case 4:
             url += "rte_20.pdf"
-            busNum = "20"
+            busNum = "20 - UCSC Via Westside"
+        default:
+            url += "rte_22.pdf"
+            busNum = "22 - UCSC/Coastal Science"
         }
         
         let webViewController = SVModalWebViewController(address: url)
@@ -190,7 +235,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func listGymLiveCount() {
         if showTutorial {
-            self.showAlert(title: "Live Facility Counts", message: "Facility: Participants/Max Capacity\nRed text = Last update was 3+ hours ago \n\nFacility counts are typically posted every hour, and wellness center counts are posted every 30 minutes.")
+            self.showAlert(title: "Live Facility Counts", message: "Facility: Participants/Max Occupancy\nDate: Last Check-in Time \n\nFacility counts are typically posted every hour, and wellness center counts are posted every 30 minutes.")
             showTutorial = false
         }
         
@@ -204,7 +249,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         let spreadSheetId = "1o1lQ6FFqr6RALPZ6I48cuWDd1clrPOlks8f3sWKx-9s"
-        let range = "Live Count Sheet!A36:E"
+        let range = "Live Count Sheet!A37:E"
         
         let query = GTLRSheetsQuery_SpreadsheetsValuesGet.query(withSpreadsheetId: spreadSheetId, range: range)
         
@@ -273,13 +318,14 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
             var gymTime = ""
             if let _ = row[optional: 2] {
                 gymTime = "\(row[2])"
+                //print(gymTime)
                 
-                if let time = self.dateFormat(date: "\(row[2])") {
-                    gymTime = time
-                }
+                //if let time = self.dateFormat(date: "\(row[2])") {
+                //    gymTime = time
+                //}
                 
                 //Check if current Gym data has a relevant time
-                self.gymCountValidTime.append(self.checkValidTime(gymDate: "\(row[2])"))
+                //self.gymCountValidTime.append(self.checkValidTime(gymDate: "\(row[2])"))
             }
             
             
