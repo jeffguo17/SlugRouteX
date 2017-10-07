@@ -37,7 +37,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var networkDisconnect = false
     let locationManager = CLLocationManager()
     var runTime = 0
-    var slowConnection = false
+    var waitTime = 8
+    var slowConnection = true
     var noSlugRouteConnection = false
     
     let noInternetBanner = NotificationBanner(title: "No Internet Connection", subtitle: "Please Check Your Internet Connection", style: .danger)
@@ -139,25 +140,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.drawBusStops()
         
         //College Annotations
-        let mapLabel = MapLabel(coordinate: CLLocationCoordinate2D(latitude: 37.001006, longitude: -122.058368), title: "College Ten", subtitle: "Social Justice and Community")
-        mapView.addAnnotation(mapLabel)
+        self.drawCollegeMarkers()
         
     }
     
     @objc private func fetchBusHttp() {
+        waitTime += 1
+        
+        if waitTime >= 20 {
+            self.slowConnection = true
+            waitTime = 0
+        }
         
         if runTime == 0 {
             let url = URL(string: "http://bts.ucsc.edu:8081/location/get")
-            self.slowConnection = true
             
             let task = URLSession.shared.dataTask(with: url!) {
                 (data, response, error) in
+                
                 self.slowConnection = false
                 
                 if error != nil {
-                    
                     self.busList.removeAll()
-                    
                     if error?._code == NSURLErrorTimedOut {
                         if self.networkDisconnect {
                             DispatchQueue.main.async {
@@ -167,8 +171,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         }
                         
                         if self.noSlugRouteConnection == false {
-                            
-                            self.noSlugRouteBanner.show(bannerPosition: .bottom, on: self)
+                            DispatchQueue.main.async {
+                                self.noSlugRouteBanner.show(bannerPosition: .bottom, on: self)
+                            }
                             self.noSlugRouteBanner.autoDismiss = false
                             
                             self.noSlugRouteConnection = true
@@ -194,8 +199,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                              }
                              */
                             
-                            
-                            self.noInternetBanner.show(bannerPosition: .bottom, on: self)
+                            DispatchQueue.main.async {
+                                self.noInternetBanner.show(bannerPosition: .bottom, on: self)
+                            }
                             self.noInternetBanner.autoDismiss = false
                             
                             self.networkDisconnect = true
@@ -235,7 +241,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
             }
             
-            if self.slowConnection {
+            if self.slowConnection && waitTime >= 12 {
                 if isConnectedToNetwork() {
                     if self.networkDisconnect {
                         DispatchQueue.main.async {
@@ -246,8 +252,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
                 
                 if NotificationBannerQueue.default.numberOfBanners < 1 {
-                   self.slowConnectionBanner.show(bannerPosition: .bottom, on: self)
+                    DispatchQueue.main.async {
+                        self.slowConnectionBanner.show(bannerPosition: .bottom, on: self)
+                    }
                 }
+                
             }
             
             task.resume()
@@ -282,6 +291,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             mapView.addAnnotation(mapMarker)
         }
+    }
+    
+    private func addMapAnnotation(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, id: Int) {
+        let mapLabel = MapLabel(coordinate: coordinate, title: title, subtitle: subtitle, id: id)
+        mapView.addAnnotation(mapLabel)
+    }
+    
+    private func drawCollegeMarkers() {
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 37.001095, longitude: -122.058221), title: "College 9 & 10", subtitle: "College Nine & Ten", id: 0)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 37.000470, longitude: -122.053966), title: "Crown & Merrill", subtitle: "Crown and Merrill College", id: 1)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.997086, longitude: -122.052971), title: "Cowell & Stevenson", subtitle: "Cowell and Stevenson", id: 2)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.994031, longitude: -122.053161), title: "East Field (OPERS)", subtitle: "East Field & OPERS Wellness Center", id: 3)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.986940, longitude: -122.055183), title: "The Village", subtitle: "The Village", id: 0)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.989283, longitude: -122.065581), title: "Oakes College", subtitle: "Oakes College", id: 0)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.991557, longitude: -122.064452), title: "Rachel Carson College", subtitle: "Rachel Carson College", id: 6)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.994184, longitude: -122.065362), title: "Porter College", subtitle: "Porter College", id: 0)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.997408, longitude: -122.066743), title: "Kresge College", subtitle: "Kresge College", id: 0)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 37.000826, longitude: -122.062422), title: "Jack Baskin", subtitle: "Jack Baskin & Engineering 2", id: 9)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.998862, longitude: -122.060872), title: "S&E Library", subtitle: "Science and Engineering Library", id: 9)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.995584, longitude: -122.058334), title: "McHenry Library", subtitle: "McHenry Library", id: 10)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.998035, longitude: -122.056053), title: "Quarry Plaza", subtitle: "Quarry Plaza", id: 9)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.991948, longitude: -122.067853), title: "Family Student Housing", subtitle: "Family Student Housing", id: 11)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.994941, longitude: -122.062052), title: "Media Theater", subtitle: "Media Theater", id: 9)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.993298, longitude: -122.060217), title: "Music Center", subtitle: "Music Center", id: 9)
+        
+        addMapAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.999381, longitude: -122.057484), title: "Health Center", subtitle: "Health Center", id: 9)
     }
     
     private func setBusList(resultArray: [[String: AnyObject]]) {
@@ -568,6 +618,85 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return nil
         }
         
+        
+        //College/Library Markers Configuration
+        //https://stackoverflow.com/questions/29049097/viewforannotation-sometimes-cant-get-custom-mkannotation-class-and-render-it-pr
+        if let MapLabel = annotation as? MapLabel {
+            
+            //Configure Map Label Views
+            var width = 0
+            var height = 0
+            var textColor = UIColor.black
+            
+            switch (MapLabel.id) {
+            case 0:
+                width = 30
+                height = 25
+                textColor = UIColor.blue
+            case 1:
+                width = 35
+                height = 25
+                textColor = UIColor.blue
+            case 2:
+                width = 40
+                height = 25
+                textColor = UIColor.blue
+            case 3:
+                width = 40
+                height = 25
+                textColor = UIColor.black
+            case 6:
+                width = 30
+                height = 30
+                textColor = UIColor.blue
+            case 9:
+                width = 30
+                height = 25
+                textColor = UIColor.black
+            case 10:
+                width = 35
+                height = 25
+                textColor = UIColor.black
+            case 11:
+                width = 35
+                height = 30
+                textColor = UIColor.blue
+            default:
+                print("")
+            }
+            
+            let attributes = [NSStrokeWidthAttributeName: -3.0,
+                              NSStrokeColorAttributeName: textColor,
+                              NSForegroundColorAttributeName: textColor] as [String : Any]
+            
+            //Annotation Configuration
+            let annotationIdentifier = "MapLabelAnno"
+            
+            var annotationView: MKAnnotationView?
+            
+            if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+                annotationView = dequeuedAnnotationView
+                annotationView?.annotation = annotation
+            } else {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+                
+                let labelText = UILabel()
+                labelText.tag = 2
+                annotationView?.addSubview(labelText)
+            }
+            
+            if let annoView = annotationView?.viewWithTag(2) as? UILabel {
+                annotationView?.canShowCallout = true
+                annoView.frame = CGRect(x: (-1 * width)/2, y: (-1 * height)/2, width: width, height: height)
+                annoView.font = annoView.font.withSize(7)
+                annoView.numberOfLines = 5
+                annoView.attributedText = NSAttributedString(string: MapLabel.title!, attributes: attributes)
+            }
+            
+            return annotationView
+        }
+        
+        
         // Better to make this class property
         let annotationIdentifier = "AnnotationIdentifier"
         
@@ -581,35 +710,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         if let annotationView = annotationView {
-            // Configure your annotation view here
             annotationView.canShowCallout = true
             
             if let MapMarker = annotation as? MapMarker {
                 annotationView.image = MapMarker.image
                 annotationView.layer.zPosition = MapMarker.zOrder!
             }
-            
-            if let MapLabel = annotation as? MapLabel {
-                let coordView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-                
-                coordView.layer.cornerRadius = 6.0
-                coordView.layer.borderWidth = 1.0
-                coordView.layer.borderColor = UIColor.black.cgColor
-                coordView.backgroundColor =  UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 0.70)
-                
-                let labelText = UILabel(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-                labelText.font = labelText.font.withSize(7)
-                labelText.text = MapLabel.title
-                labelText.numberOfLines = 5
-                labelText.textAlignment = .center
-                labelText.textColor = UIColor.black
-                labelText.backgroundColor = UIColor.clear
-                
-                coordView.addSubview(labelText)
-                annotationView.addSubview(coordView)
-            }
-            
         }
+        
         return annotationView
     }
     

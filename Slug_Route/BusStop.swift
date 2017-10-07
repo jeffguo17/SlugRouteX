@@ -74,9 +74,9 @@ struct BusStops {
         
         innerLoopList.append(BusStop(23, CLLocation(latitude: 36.9826698303223, longitude: -122.062492370605), "Empire Grade & Arboretum"));
         
-        innerLoopList.append(BusStop(26, CLLocation(latitude: 36.9905776977539, longitude: -122.066116333008), "Heller & Oakes College"));
+        innerLoopList.append(BusStop(26, CLLocation(latitude: 36.9905776977539, longitude: -122.066116333008), "Heller Dr & Oakes College"));
         
-        innerLoopList.append(BusStop(29, CLLocation(latitude: 36.9927787780762, longitude: -122.064880371094), "Heller & College 8 & Porter"));
+        innerLoopList.append(BusStop(29, CLLocation(latitude: 36.9927787780762, longitude: -122.064880371094), "Heller Dr (Rachel Carson & Porter)"));
         
         
         // Outer loop stops
@@ -106,11 +106,11 @@ struct BusStops {
         
         outerLoopList.append(BusStop(24, CLLocation(latitude: 36.9836616516113, longitude:-122.064964294434), "Empire Grade & Arboretum"));
         
-        outerLoopList.append(BusStop(25, CLLocation(latitude: 36.989917755127, longitude:-122.067230224609), "Heller & Oakes College"));
+        outerLoopList.append(BusStop(25, CLLocation(latitude: 36.989917755127, longitude:-122.067230224609), "Heller Dr & Oakes College"));
         
-        outerLoopList.append(BusStop(27, CLLocation(latitude: 36.991828918457, longitude:-122.066833496094), "Heller & Family Student Housing"));
+        outerLoopList.append(BusStop(27, CLLocation(latitude: 36.991828918457, longitude:-122.066833496094), "Heller Dr & Family Student Housing"));
         
-        outerLoopList.append(BusStop(28, CLLocation(latitude: 36.992977142334, longitude:-122.065223693848), "Heller & College 8 & Porter"));
+        outerLoopList.append(BusStop(28, CLLocation(latitude: 36.992977142334, longitude:-122.065223693848), "Heller Dr (Rachel Carson & Porter)"));
         
     }
     
