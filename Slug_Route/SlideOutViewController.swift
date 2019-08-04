@@ -121,7 +121,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
         
         gymHeaderView.addSubview(metroBusTableViewHeader)
         
-        
+        /*
         self.tableView.tableHeaderView = gymHeaderView
         
         //Refresh Tableview Setup
@@ -130,6 +130,9 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
                 self.listGymLiveCount()
             }
         }
+        */
+        self.tableView.tableHeaderView = metroBusTableViewHeader
+        //self.tableView.tableHeaderView?.addSubview(metroBusTableViewHeader)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -190,7 +193,7 @@ class SlideOutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var url = "https://www.scmtd.com/media/bkg/20181/sched/"
+        var url = "https://www.scmtd.com/media/bkg/20194/sched/"
         var busNum = ""
         
         switch (indexPath.row) {
